@@ -19,6 +19,7 @@ import okhttp3.internal.Internal.instance
 
 @Database(entities = arrayOf(Person::class), version = 1, exportSchema = false)
 public abstract class KikeouDataBase : RoomDatabase() {
+
     abstract fun personDao(): PersonDao
 
 
@@ -39,8 +40,7 @@ public abstract class KikeouDataBase : RoomDatabase() {
                     context.applicationContext,
                     KikeouDataBase::class.java,
                     "kikeou_database"
-                )
-                    .build()
+                ).build()
                 INSTANCE = instance
                 return instance
             }

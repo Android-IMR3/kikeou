@@ -2,20 +2,27 @@ package fr.enssat.kikeou.alnezami_dansay
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 
-import fr.enssat.kikeou.alnezami_dansay.R
+
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
        setContentView(R.layout.activity_main)
-       setupActionBarWithNavController(findNavController(R.id.fragmentContainerView))
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        val navController: NavController = navHostFragment.navController
+       setupActionBarWithNavController(navController)
     }
     override fun onSupportNavigateUp():Boolean{
-        val navController  = findNavController(R.id.fragmentContainerView)
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        val navController: NavController = navHostFragment.navController
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 

@@ -19,13 +19,8 @@ package fr.enssat.kikeou.alnezami_dansay.view.list
 
 
 import android.app.Application
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import fr.enssat.kikeou.alnezami_dansay.database.KikeouDataBase
-import fr.enssat.kikeou.alnezami_dansay.database.dao.PersonDao
 import fr.enssat.kikeou.alnezami_dansay.database.entity.Person
 import fr.enssat.kikeou.alnezami_dansay.database.repository.PersonRepository
 import kotlinx.coroutines.Dispatchers
@@ -37,13 +32,12 @@ import kotlinx.coroutines.launch
  * ViewModel for SleepTrackerFragment.
  */
 @InternalCoroutinesApi
-class ListPersonViewModal(
-   application: Application) : ViewModel() {
-     var readAllData:LiveData<List<Person>>
+class ListPersonViewModal(application: Application) : AndroidViewModel(application) {
+     val readAllData: LiveData<List<Person>>
 
-     var respository:PersonRepository
+     val respository: PersonRepository
 
-    init {
+     init {
         val personDao  = KikeouDataBase.getDatabase(application).personDao()
 
         respository = PersonRepository(personDao)

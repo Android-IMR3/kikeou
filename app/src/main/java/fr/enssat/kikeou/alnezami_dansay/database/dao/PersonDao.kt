@@ -12,14 +12,14 @@ interface PersonDao {
         fun getAllPersons(): LiveData<List<Person>>
 
         @Insert(onConflict = OnConflictStrategy.IGNORE)
-        suspend fun addPerson(person: Person): Flow<Person>
-        @Delete
-        suspend fun removePerson(person: Person)
+        fun addPerson(person: Person)
+       @Delete
+         fun removePerson(person: Person)
 
         @Update(onConflict = OnConflictStrategy.IGNORE)
-        suspend fun updatePerson(person: Person)
+         fun updatePerson(person: Person)
 
         @Query("DELETE FROM person_table")
-        suspend fun deleteAll()
+         fun deleteAll()
 
 }

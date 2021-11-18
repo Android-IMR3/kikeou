@@ -28,8 +28,7 @@ class ListPersonFragment : Fragment() {
 
 
 
-       // var person = Person(0,"ibrahim","alnezami","balaba",66,"0987654323","ibra@ibra.com","lannion")
-        //mPersonViewModel.addPerson(person);
+
 
         val view = binding.root
         //recyclerview
@@ -38,7 +37,13 @@ class ListPersonFragment : Fragment() {
         recyclerview.adapter= adapter
         recyclerview.layoutManager = LinearLayoutManager(requireContext())
         //
-        mPersonViewModel = ViewModelProvider(this).get(ListPersonViewModal::class.java)
+
+
+       // mPersonViewModel = ViewModelProvider.AndroidViewModelFactory(this.activity!!.application).create(ListPersonViewModal::class.java)
+
+       mPersonViewModel = ViewModelProvider(this).get(ListPersonViewModal::class.java)
+        var person = Person(0,"ibrahim","alnezami","balaba",66,"0987654323","ibra@ibra.com","lannion")
+        mPersonViewModel.addPerson(person);
         mPersonViewModel.readAllData.observe(viewLifecycleOwner, Observer{user -> adapter.setData(user)})
 
 
