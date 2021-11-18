@@ -6,8 +6,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import fr.enssat.kikeou.alnezami_dansay.database.dao.AgendaDao
+import fr.enssat.kikeou.alnezami_dansay.database.dao.MyAccountDao
 import fr.enssat.kikeou.alnezami_dansay.database.dao.PersonDao
 import fr.enssat.kikeou.alnezami_dansay.database.entity.Agenda
+import fr.enssat.kikeou.alnezami_dansay.database.entity.MyAccount
 import fr.enssat.kikeou.alnezami_dansay.database.entity.Person
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -17,10 +19,11 @@ import okhttp3.internal.Internal
 import okhttp3.internal.Internal.instance
 
 
-@Database(entities = arrayOf(Person::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(Person::class, MyAccount::class), version = 1, exportSchema = false)
 public abstract class KikeouDataBase : RoomDatabase() {
 
     abstract fun personDao(): PersonDao
+    abstract fun myAccountDao(): MyAccountDao
 
 
     companion object {

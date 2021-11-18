@@ -10,11 +10,15 @@
         android:name="fr.enssat.kikeou.alnezami_dansay.view.list.ListPersonFragment"
         android:label="Contact"
         tools:layout="@layout/fragment_list" >
-
-
+        <action
+            android:id="@+id/action_listFragment_to_qrFragment"
+            app:destination="@id/qrFragment" />
     </fragment>
-
-
+    <fragment
+        android:id="@+id/qrFragment"
+        android:name="fr.enssat.kikeou.alnezami_dansay.view.qr.QrFragment"
+        android:label="fragment_qr"
+        tools:layout="@layout/fragment_qr" />
 
 
 </navigation>

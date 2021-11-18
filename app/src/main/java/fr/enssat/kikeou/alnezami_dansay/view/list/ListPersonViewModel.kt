@@ -32,7 +32,7 @@ import kotlinx.coroutines.launch
  * ViewModel for SleepTrackerFragment.
  */
 @InternalCoroutinesApi
-class ListPersonViewModal(application: Application) : AndroidViewModel(application) {
+class ListPersonViewModel(application: Application) : AndroidViewModel(application) {
      val readAllData: LiveData<List<Person>>
 
      val respository: PersonRepository
