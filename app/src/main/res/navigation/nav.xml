@@ -8,17 +8,85 @@
     <fragment
         android:id="@+id/listFragment"
         android:name="fr.enssat.kikeou.alnezami_dansay.view.list.ListPersonFragment"
-        android:label="Contact"
+        android:label="Kikeou"
         tools:layout="@layout/fragment_list" >
         <action
             android:id="@+id/action_listFragment_to_qrFragment"
-            app:destination="@id/qrFragment" />
+            app:destination="@id/qrFragment"
+
+        />
+        <action
+            android:id="@+id/action_listFragment_to_scannerQrFragment"
+            app:destination="@id/scannerQrFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_contactFragment"
+            app:destination="@id/contactFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/listFragment"/>
     </fragment>
     <fragment
         android:id="@+id/qrFragment"
         android:name="fr.enssat.kikeou.alnezami_dansay.view.qr.QrFragment"
         android:label="fragment_qr"
-        tools:layout="@layout/fragment_qr" />
+        tools:layout="@layout/fragment_qr" >
+        <action
+            android:id="@+id/action_qrFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/scannerQrFragment"
+        android:name="fr.enssat.kikeou.alnezami_dansay.view.readQR.ScannerQrFragment"
+        android:label="Scanner QR"
+        tools:layout="@layout/fragment_scanner_qr" >
+        <action
+            android:id="@+id/action_scannerQrFragment_to_listFragment"
+            app:destination="@id/listFragment" >
+        </action>
+        <action
+            android:id="@+id/action_scannerQrFragment_to_formNewContactFragment"
+            app:destination="@id/formNewContactFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/listFragment">
+        </action>
+
+    </fragment>
+    <fragment
+        android:id="@+id/formNewContactFragment"
+        android:name="fr.enssat.kikeou.alnezami_dansay.view.readQR.FormNewContactFragment"
+        android:label="fragment_form_new_contact"
+        tools:layout="@layout/fragment_form_new_contact" >
+        <argument
+            android:name="newContact"
+            app:argType="fr.enssat.kikeou.alnezami_dansay.model.entity.Person" />
+        <action
+            android:id="@+id/action_formNewContactFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="fr.enssat.kikeou.alnezami_dansay.view.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/contactFragment"
+        android:name="fr.enssat.kikeou.alnezami_dansay.view.contact.ContactFragment"
+        android:label="fragment_contact"
+        tools:layout="@layout/fragment_contact" >
+        <argument
+            android:name="contact"
+            app:argType="fr.enssat.kikeou.alnezami_dansay.model.entity.Person" />
+        <action
+            android:id="@+id/action_contactFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+
+    </fragment>
 
 
 </navigation>

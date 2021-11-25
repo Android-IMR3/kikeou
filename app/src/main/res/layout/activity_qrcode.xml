@@ -55,13 +55,13 @@
                     android:contentDescription="@string/desc_qr_code"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/share_btn"
-                    app:layout_constraintStart_toEndOf="@+id/scanner_btn"
+                    app:layout_constraintStart_toEndOf="@+id/btnScanner"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@mipmap/icon10"
                     tools:ignore="SpeakableTextPresentCheck" />
 
                 <ImageButton
-                    android:id="@+id/scanner_btn"
+                    android:id="@+id/btnScanner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#00FFFFFF"
