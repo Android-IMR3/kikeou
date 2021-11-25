@@ -2,7 +2,7 @@ ext {
     androidVersion = '2.6.0'
     work_version = "2.7.0"
     versions_work = "2.3.4"
-    kortlin_version ="1.4.32s"
+    kortlin_version ="1.4.32"
     activityVersion = '1.1.0'
     appCompatVersion = '1.2.0'
     constraintLayoutVersion = '2.0.2'
@@ -12,9 +12,14 @@ ext {
     materialVersion = '1.2.1'
     roomVersion = '2.2.5'
     // testing
+    nav_version = "2.3.5"
     junitVersion = '4.13.1'
     espressoVersion = '3.1.0'
     androidxJunitVersion = '1.1.2'
+    camera = "1.1.0-alpha09"
+    barcode = "17.0.0"
+    camera_view = "1.0.0-alpha29"
+    mlkit = "16.3.0"
 
 }// Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
