@@ -11,7 +11,6 @@ interface AgendaDao {
     @Query("SELECT * FROM agenda_table")
     fun getAllAgendas(): Flow<List<Person>>
 
-
     @Query("DELETE FROM agenda_table")
     suspend fun deleteAll()
 

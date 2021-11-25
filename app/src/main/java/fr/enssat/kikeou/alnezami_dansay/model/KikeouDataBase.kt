@@ -18,7 +18,6 @@ public abstract class KikeouDataBase : RoomDatabase() {
     abstract fun personDao(): PersonDao
     abstract fun myAccountDao(): MyAccountDao
 
-
     companion object {
         // Singleton prevents multiple instances of database opening at the
         // same time.
