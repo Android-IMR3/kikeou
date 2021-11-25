@@ -62,11 +62,6 @@ class QrFragment : Fragment() {
             out?.flush()
             out?.close()
 
-
-            //to get png in Android Studio : View -> Tool Windows -> Device File Explorer
-            //in storage/self/primary/Documents/Kikeou
-            //also in sdcard/Documents/Kikeou
-            //synchronize Documents folder if needed
         } catch (e: Exception) {
             e.printStackTrace()
         }

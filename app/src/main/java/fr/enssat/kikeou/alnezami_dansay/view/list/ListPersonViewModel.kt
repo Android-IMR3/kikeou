@@ -34,14 +34,11 @@ import kotlinx.coroutines.launch
 @InternalCoroutinesApi
 class ListPersonViewModel(application: Application) : AndroidViewModel(application) {
      val readAllData: LiveData<List<Person>>
-
      val respository: PersonRepository
 
      init {
         val personDao  = KikeouDataBase.getDatabase(application).personDao()
-
         respository = PersonRepository(personDao)
-
         readAllData = respository.readAllData
     }
 fun addPerson(person:Person) {
