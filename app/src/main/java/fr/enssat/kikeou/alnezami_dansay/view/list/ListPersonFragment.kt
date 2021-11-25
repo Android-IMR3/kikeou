@@ -9,10 +9,17 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import fr.enssat.kikeou.alnezami_dansay.R
-import fr.enssat.kikeou.alnezami_dansay.database.entity.Person
 import fr.enssat.kikeou.alnezami_dansay.databinding.FragmentListBinding
+import fr.enssat.kikeou.alnezami_dansay.model.entity.Person
+
+
+
 import kotlinx.coroutines.InternalCoroutinesApi
+
+
+
+
+
 
 
 class ListPersonFragment : Fragment() {
@@ -37,16 +44,32 @@ class ListPersonFragment : Fragment() {
         //
 
 
+
+
+
        // mPersonViewModel = ViewModelProvider.AndroidViewModelFactory(this.activity!!.application).create(ListPersonViewModal::class.java)
 
        mPersonViewModel = ViewModelProvider(this).get(ListPersonViewModel::class.java)
-       // var person = Person(0,"ibrahim","alnezami","balaba",66,"0987654323","ibra@ibra.com","lannion")
-      //  mPersonViewModel.addPerson(person);
+        var person = Person(0,"ibrahim","alnezami","balaba",66,"0987654323","ibra@ibra.com","lannion")
+       // mPersonViewModel.addPerson(person);
         mPersonViewModel.readAllData.observe(viewLifecycleOwner, Observer{user -> adapter.setData(user)})
 
-        val btn = binding.btnGenerate
-        btn.setOnClickListener{_ ->
-            findNavController().navigate(R.id.action_listFragment_to_qrFragment)
+        val btnGenerate = binding.navBottom.btnGenerate
+        btnGenerate.setOnClickListener{_ ->
+            findNavController().navigate(fr.enssat.kikeou.alnezami_dansay.R.id.action_listFragment_to_qrFragment)
+        }
+
+        val btnScanner = binding.navBottom.btnScanner
+        btnScanner.setOnClickListener{_ ->
+            findNavController().navigate(fr.enssat.kikeou.alnezami_dansay.R.id.action_listFragment_to_scannerQrFragment)
+
+        }
+
+
+        val btnHome = binding.navBottom.homeBtn
+        btnHome.setOnClickListener{_ ->
+            findNavController().navigate(fr.enssat.kikeou.alnezami_dansay.R.id.action_listFragment_to_homeFragment)
+
         }
        return view
     }

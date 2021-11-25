@@ -5,10 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
+
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import fr.enssat.kikeou.alnezami_dansay.R
-import fr.enssat.kikeou.alnezami_dansay.database.entity.Person
+import fr.enssat.kikeou.alnezami_dansay.model.entity.Person
 
 
 class PersonAdapter: RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
@@ -21,6 +23,10 @@ class PersonAdapter: RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = personList[position]
         holder.bind(item)
+        holder.itemView.setOnClickListener {
+            val action = ListPersonFragmentDirections.actionListFragmentToContactFragment(item)
+            holder.itemView.findNavController().navigate(action)
+        }
     }
 
 
@@ -37,7 +43,7 @@ class PersonAdapter: RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
             val res = itemView.context.resources
             first_name.text = person.first_name
             last_name.text = person.last_name
-            Picasso.get().load(person.photo).into(avatar)
+            Picasso.get().load("https://source.unsplash.com/1600x900/?nature,water").into(avatar)
 
         }
 

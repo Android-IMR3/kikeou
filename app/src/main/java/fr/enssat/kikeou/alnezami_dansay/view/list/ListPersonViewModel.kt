@@ -20,9 +20,9 @@ package fr.enssat.kikeou.alnezami_dansay.view.list
 
 import android.app.Application
 import androidx.lifecycle.*
-import fr.enssat.kikeou.alnezami_dansay.database.KikeouDataBase
-import fr.enssat.kikeou.alnezami_dansay.database.entity.Person
-import fr.enssat.kikeou.alnezami_dansay.database.repository.PersonRepository
+import fr.enssat.kikeou.alnezami_dansay.model.KikeouDataBase
+import fr.enssat.kikeou.alnezami_dansay.model.entity.Person
+import fr.enssat.kikeou.alnezami_dansay.model.repository.PersonRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.InternalCoroutinesApi
 
