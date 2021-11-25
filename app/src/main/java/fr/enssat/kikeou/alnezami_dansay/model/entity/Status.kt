@@ -1,4 +1,4 @@
-package fr.enssat.kikeou.alnezami_dansay.database.entity
+package fr.enssat.kikeou.alnezami_dansay.model.entity
 
 import androidx.room.Entity
 

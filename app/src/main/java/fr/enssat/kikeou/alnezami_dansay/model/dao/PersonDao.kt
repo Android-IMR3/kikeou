@@ -1,9 +1,8 @@
-package fr.enssat.kikeou.alnezami_dansay.database.dao
+package fr.enssat.kikeou.alnezami_dansay.model.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import fr.enssat.kikeou.alnezami_dansay.database.entity.Person
-import kotlinx.coroutines.flow.Flow
+import fr.enssat.kikeou.alnezami_dansay.model.entity.Person
 
 @Dao
 interface PersonDao {

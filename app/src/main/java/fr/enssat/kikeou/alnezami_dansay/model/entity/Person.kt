@@ -1,8 +1,13 @@
-package fr.enssat.kikeou.alnezami_dansay.database.entity
+package fr.enssat.kikeou.alnezami_dansay.model.entity
 
+import android.os.Parcelable
 import androidx.room.*
+import com.squareup.moshi.JsonClass
+import kotlinx.android.parcel.Parcelize
 
 
+@Parcelize
+@JsonClass(generateAdapter = true)
 @Entity(tableName = "person_table")
 class Person(
             @PrimaryKey(autoGenerate = true)
@@ -21,6 +26,6 @@ class Person(
             val email: String,
             @ColumnInfo(name = "adresse")
             val adresse: String
-) {
+): Parcelable {
 
 }

@@ -1,7 +1,7 @@
-package fr.enssat.kikeou.alnezami_dansay.database.dao
+package fr.enssat.kikeou.alnezami_dansay.model.dao
 
 import androidx.room.*
-import fr.enssat.kikeou.alnezami_dansay.database.entity.Person
+import fr.enssat.kikeou.alnezami_dansay.model.entity.Person
 import kotlinx.coroutines.flow.Flow
 
 
