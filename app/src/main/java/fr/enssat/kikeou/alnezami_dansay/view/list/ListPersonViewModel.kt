@@ -21,10 +21,11 @@ package fr.enssat.kikeou.alnezami_dansay.view.list
 import android.app.Application
 import androidx.lifecycle.*
 import fr.enssat.kikeou.alnezami_dansay.model.KikeouDataBase
-import fr.enssat.kikeou.alnezami_dansay.model.entity.Person
-import fr.enssat.kikeou.alnezami_dansay.model.repository.PersonRepository
+import fr.enssat.kikeou.alnezami_dansay.model.entity.Agenda
+import fr.enssat.kikeou.alnezami_dansay.model.repository.AgendaRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
 
 import kotlinx.coroutines.launch
 
@@ -33,17 +34,17 @@ import kotlinx.coroutines.launch
  */
 @InternalCoroutinesApi
 class ListPersonViewModel(application: Application) : AndroidViewModel(application) {
-     val readAllData: LiveData<List<Person>>
-     val respository: PersonRepository
+     val readAllData: Flow<List<Agenda>>
+     val respository: AgendaRepository
 
      init {
-        val personDao  = KikeouDataBase.getDatabase(application).personDao()
-        respository = PersonRepository(personDao)
-        readAllData = respository.readAllData
+        val agendaDao  = KikeouDataBase.getDatabase(application).agendaDao()
+        respository = AgendaRepository(agendaDao)
+        readAllData = respository.allAgendas
     }
-fun addPerson(person:Person) {
+fun addPerson(agenda: Agenda) {
     viewModelScope.launch(Dispatchers.IO){
-        respository.addPerson(person)
+        respository.insert(agenda)
     }
 }
 

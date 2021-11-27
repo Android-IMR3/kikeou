@@ -10,18 +10,18 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import fr.enssat.kikeou.alnezami_dansay.R
-import fr.enssat.kikeou.alnezami_dansay.model.entity.Person
+import fr.enssat.kikeou.alnezami_dansay.model.entity.Agenda
 
 
 class PersonAdapter: RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
 
-    private var personList =  emptyList<Person>()
+    private var agendaList =  emptyList<Agenda>()
 
 
-    override fun getItemCount() = personList.size
+    override fun getItemCount() = agendaList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = personList[position]
+        val item = agendaList[position]
         holder.bind(item)
         holder.itemView.setOnClickListener {
             val action = ListPersonFragmentDirections.actionListFragmentToContactFragment(item)
@@ -35,14 +35,14 @@ class PersonAdapter: RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
     }
 
     class ViewHolder private constructor(itemView: View) : RecyclerView.ViewHolder(itemView){
-        val first_name: TextView = itemView.findViewById(R.id.last_name_txt)
-        val last_name: TextView = itemView.findViewById(R.id.first_name_txt)
+        val name: TextView = itemView.findViewById(R.id.name_txt)
+
         val avatar: ImageView =  itemView.findViewById(R.id.photo)
 
-        fun bind(person: Person) {
+        fun bind(person: Agenda) {
             val res = itemView.context.resources
-            first_name.text = person.first_name
-            last_name.text = person.last_name
+            name.text = person.name
+
             Picasso.get().load("https://source.unsplash.com/1600x900/?nature,water").into(avatar)
 
         }
@@ -58,8 +58,8 @@ class PersonAdapter: RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
         }
 
     }
-    fun setData(person: List<Person>){
-        this.personList = person
+    fun setData(agenda: List<Agenda>){
+        this.agendaList = agenda
         notifyDataSetChanged()
 
     }

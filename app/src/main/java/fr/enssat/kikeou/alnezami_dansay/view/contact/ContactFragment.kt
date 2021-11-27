@@ -34,9 +34,9 @@ class ContactFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentContactBinding.inflate(inflater, container, false)
-        binding.nameUser.setText(args.contact.first_name+" "+args.contact.last_name)
-        binding.adresseUser.setText(args.contact.adresse)
-        binding.phoneUser.setText(args.contact.phone)
+        binding.nameUser.setText(args.contact.name)
+        binding.adresseUser.setText(args.contact.contact.mail)
+        binding.phoneUser.setText(args.contact.contact.tel)
 
         contactViewModel = ViewModelProvider(this).get(ContactViewModel::class.java)
 

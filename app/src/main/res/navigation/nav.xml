@@ -26,6 +26,9 @@
             app:destination="@id/contactFragment"
             app:popUpToInclusive="true"
             app:popUpTo="@id/listFragment"/>
+        <action
+            android:id="@+id/action_listFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
     </fragment>
     <fragment
         android:id="@+id/qrFragment"
@@ -60,7 +63,7 @@
         tools:layout="@layout/fragment_form_new_contact" >
         <argument
             android:name="newContact"
-            app:argType="fr.enssat.kikeou.alnezami_dansay.model.entity.Person" />
+            app:argType="fr.enssat.kikeou.alnezami_dansay.model.entity.Agenda" />
         <action
             android:id="@+id/action_formNewContactFragment_to_listFragment"
             app:destination="@id/listFragment" />
@@ -73,6 +76,9 @@
         <action
             android:id="@+id/action_homeFragment_to_listFragment"
             app:destination="@id/listFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_updateFragment"
+            app:destination="@id/updateFragment" />
     </fragment>
     <fragment
         android:id="@+id/contactFragment"
@@ -81,11 +87,29 @@
         tools:layout="@layout/fragment_contact" >
         <argument
             android:name="contact"
-            app:argType="fr.enssat.kikeou.alnezami_dansay.model.entity.Person" />
+            app:argType="fr.enssat.kikeou.alnezami_dansay.model.entity.Agenda" />
         <action
             android:id="@+id/action_contactFragment_to_listFragment"
             app:destination="@id/listFragment" />
 
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="fr.enssat.kikeou.alnezami_dansay.view.home.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_listFragment"
+            app:destination="@id/listFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateFragment"
+        android:name="fr.enssat.kikeou.alnezami_dansay.view.home.UpdateFragment"
+        android:label="fragment_update"
+        tools:layout="@layout/fragment_update" >
+        <action
+            android:id="@+id/action_updateFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 
 

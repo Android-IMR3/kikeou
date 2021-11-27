@@ -4,19 +4,18 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import fr.enssat.kikeou.alnezami_dansay.model.dao.MyAccountDao
-import fr.enssat.kikeou.alnezami_dansay.model.dao.PersonDao
-import fr.enssat.kikeou.alnezami_dansay.model.entity.MyAccount
-import fr.enssat.kikeou.alnezami_dansay.model.entity.Person
+import androidx.room.TypeConverters
+import fr.enssat.kikeou.alnezami_dansay.model.dao.AgendaDao
+import fr.enssat.kikeou.alnezami_dansay.model.entity.Agenda
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.internal.synchronized
 
 
-@Database(entities = arrayOf(Person::class, MyAccount::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf( Agenda::class), version = 1, exportSchema = false)
 public abstract class KikeouDataBase : RoomDatabase() {
 
-    abstract fun personDao(): PersonDao
-    abstract fun myAccountDao(): MyAccountDao
+
+    abstract fun agendaDao(): AgendaDao
 
     companion object {
         // Singleton prevents multiple instances of database opening at the

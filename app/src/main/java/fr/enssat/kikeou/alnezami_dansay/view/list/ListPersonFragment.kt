@@ -10,8 +10,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.enssat.kikeou.alnezami_dansay.databinding.FragmentListBinding
-import fr.enssat.kikeou.alnezami_dansay.model.entity.Person
-
+import fr.enssat.kikeou.alnezami_dansay.model.entity.Agenda
+import fr.enssat.kikeou.alnezami_dansay.model.entity.Contact
+import fr.enssat.kikeou.alnezami_dansay.model.entity.Location
 
 
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -50,9 +51,12 @@ class ListPersonFragment : Fragment() {
        // mPersonViewModel = ViewModelProvider.AndroidViewModelFactory(this.activity!!.application).create(ListPersonViewModal::class.java)
 
        mPersonViewModel = ViewModelProvider(this).get(ListPersonViewModel::class.java)
-        var person = Person(0,"ibrahim","alnezami","balaba",66,"0987654323","ibra@ibra.com","lannion")
-       // mPersonViewModel.addPerson(person);
-        mPersonViewModel.readAllData.observe(viewLifecycleOwner, Observer{user -> adapter.setData(user)})
+        var contacts = Contact("ibrahim","345678","test@fb")
+
+        var loc = Location(1,"OFF")
+        var person = Agenda(0,"ibrahim","https://picsum.photos/200/300?random=1",34,loc,contacts)
+        mPersonViewModel.addPerson(person);
+       // mPersonViewModel.readAllData.observe(viewLifecycleOwner, Observer{user -> adapter.setData(user)})
 
         val btnGenerate = binding.navBottom.btnGenerate
         btnGenerate.setOnClickListener{_ ->
