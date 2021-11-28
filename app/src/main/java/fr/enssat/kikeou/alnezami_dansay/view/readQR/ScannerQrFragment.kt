@@ -21,6 +21,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.mlkit.common.model.LocalModel
 import com.google.mlkit.vision.barcode.Barcode
 import com.google.mlkit.vision.barcode.BarcodeScanner
@@ -49,8 +50,7 @@ class ScannerQrFragment : Fragment() {
     private lateinit var binding: FragmentScannerQrBinding
     private lateinit var objectDetector: ObjectDetector
     private lateinit var cameraProviderFuture : ListenableFuture<ProcessCameraProvider>
-
-
+    private val args: ScannerQrFragmentArgs by navArgs()
     override fun onRequestPermissionsResult(requestCode: Int,permissions: Array<String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         when (requestCode) {
@@ -70,6 +70,9 @@ class ScannerQrFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentScannerQrBinding.inflate(inflater, container, false)
+
+
+
         return binding.root
     }
 
@@ -170,8 +173,13 @@ class ScannerQrFragment : Fragment() {
                                   val adapter: JsonAdapter<Agenda> = moshi.adapter(Agenda::class.java)
                                   try{
                                       val contact = adapter.fromJson(rawValue)
+                                      //update agenda
+                                      if(args.updateAgenda!= null){
+                                          contact?.id= args.updateAgenda!!.id
+                                      }else{
+                                          contact?.id=0
+                                      }
                                       //  Log.e("camera scanner", json.toString())
-                                      //  Toast.makeText(context,rawValue,Toast.LENGTH_SHORT).show()
                                       val action = contact?.let {
                                           ScannerQrFragmentDirections.actionScannerQrFragmentToFormNewContactFragment(
                                               it
