@@ -23,9 +23,11 @@ import androidx.lifecycle.*
 import fr.enssat.kikeou.alnezami_dansay.model.KikeouDataBase
 import fr.enssat.kikeou.alnezami_dansay.model.entity.Agenda
 import fr.enssat.kikeou.alnezami_dansay.model.repository.AgendaRepository
+import fr.enssat.kikeou.alnezami_dansay.view.UsabelViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.count
 
 import kotlinx.coroutines.launch
 
@@ -33,34 +35,23 @@ import kotlinx.coroutines.launch
  * ViewModel for SleepTrackerFragment.
  */
 @InternalCoroutinesApi
-class ListPersonViewModel(application: Application) : AndroidViewModel(application) {
-     val readAllData: Flow<List<Agenda>>
-     val respository: AgendaRepository
-
-     init {
-        val agendaDao  = KikeouDataBase.getDatabase(application).agendaDao()
-        respository = AgendaRepository(agendaDao)
-        readAllData = respository.allAgendas
-    }
-fun addPerson(agenda: Agenda) {
-    viewModelScope.launch(Dispatchers.IO){
-        respository.insert(agenda)
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+class ListPersonViewModel(application: Application) : UsabelViewModel(application) {
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
