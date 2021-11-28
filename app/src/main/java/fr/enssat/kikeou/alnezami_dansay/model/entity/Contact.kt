@@ -5,4 +5,8 @@ import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
 @JsonClass(generateAdapter = true)
 @Parcelize
-class Contact(var mail:String, var tel:String?, var fb:String?): Parcelable{}
+class Contact(var mail:String, var tel:String?, var fb:String?): Parcelable{
+    override fun toString(): String {
+        return mail + " " + tel + " " + fb
+    }
+}

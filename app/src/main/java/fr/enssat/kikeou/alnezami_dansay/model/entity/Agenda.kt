@@ -21,6 +21,8 @@ class Agenda(
              var loc: Location,
              @Embedded
              var contact:Contact): Parcelable {
-
+    override fun toString(): String {
+        return name + "+ " +photo +" + "+week + " + "+contact
+    }
 
 }
