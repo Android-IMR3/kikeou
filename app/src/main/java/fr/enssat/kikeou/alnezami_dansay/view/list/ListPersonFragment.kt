@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.arch.core.util.Function
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -16,8 +18,8 @@ import fr.enssat.kikeou.alnezami_dansay.model.entity.Location
 
 
 import kotlinx.coroutines.InternalCoroutinesApi
-
-
+import kotlinx.coroutines.flow.count
+import androidx.lifecycle.Transformations
 
 
 
@@ -51,16 +53,27 @@ class ListPersonFragment : Fragment() {
        // mPersonViewModel = ViewModelProvider.AndroidViewModelFactory(this.activity!!.application).create(ListPersonViewModal::class.java)
 
        mPersonViewModel = ViewModelProvider(this).get(ListPersonViewModel::class.java)
-        var contacts = Contact("ibrahim","345678","test@fb")
 
-        var loc = Location(1,"OFF")
-        var person = Agenda(0,"ibrahim","https://picsum.photos/200/300?random=1",34,loc,contacts)
-        mPersonViewModel.addPerson(person);
-       // mPersonViewModel.readAllData.observe(viewLifecycleOwner, Observer{user -> adapter.setData(user)})
+        mPersonViewModel.allAgendas.observe(viewLifecycleOwner, Observer{user -> adapter.setData(user)})
+        mPersonViewModel.count.observe(viewLifecycleOwner, Observer{count -> if(count==0){
+            findNavController().navigate(fr.enssat.kikeou.alnezami_dansay.R.id.action_listFragment_to_registerFragment)
+        } })
+
+
+        val btnList = binding.navBottom.btnList
+        btnList.setOnClickListener{_ ->
+            //  val msg =  mPersonViewModel.count.value.toString()
+            // Toast.makeText(context,msg,Toast.LENGTH_SHORT).show()
+
+          //  findNavController().navigate(fr.enssat.kikeou.alnezami_dansay.R.id.action_listFragment_to_qrFragment)
+        }
 
         val btnGenerate = binding.navBottom.btnGenerate
         btnGenerate.setOnClickListener{_ ->
-            findNavController().navigate(fr.enssat.kikeou.alnezami_dansay.R.id.action_listFragment_to_qrFragment)
+          //  val msg =  mPersonViewModel.count.value.toString()
+           // Toast.makeText(context,msg,Toast.LENGTH_SHORT).show()
+
+              findNavController().navigate(fr.enssat.kikeou.alnezami_dansay.R.id.action_listFragment_to_qrFragment)
         }
 
         val btnScanner = binding.navBottom.btnScanner
@@ -68,7 +81,6 @@ class ListPersonFragment : Fragment() {
             findNavController().navigate(fr.enssat.kikeou.alnezami_dansay.R.id.action_listFragment_to_scannerQrFragment)
 
         }
-
 
         val btnHome = binding.navBottom.homeBtn
         btnHome.setOnClickListener{_ ->

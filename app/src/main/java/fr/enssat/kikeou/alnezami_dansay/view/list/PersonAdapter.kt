@@ -39,11 +39,13 @@ class PersonAdapter: RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
 
         val avatar: ImageView =  itemView.findViewById(R.id.photo)
 
-        fun bind(person: Agenda) {
+        fun bind(a: Agenda) {
             val res = itemView.context.resources
-            name.text = person.name
-
-            Picasso.get().load("https://source.unsplash.com/1600x900/?nature,water").into(avatar)
+            name.text = a.name
+            if(a.photo.isEmpty()){
+                a.photo = "https://source.unsplash.com/1600x900/?avatar,person"
+            }
+            Picasso.get().load(a.photo).into(avatar)
 
         }
 
