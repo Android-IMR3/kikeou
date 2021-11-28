@@ -22,8 +22,7 @@
     <!---
 hints
 -->
-    <string name="h_first_name"> First name</string>
-    <string name="h_last_name">Last name</string>
+    <string name="h_name">Name</string>
     <string name="h_phone">Phone number</string>
     <string name="h_email">Email</string>
     <string name="h_adresse">Addresse</string>

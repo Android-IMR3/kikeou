@@ -127,7 +127,7 @@
                                         android:layout_height="match_parent">
 
                                         <Button
-                                            android:id="@+id/adresse_user"
+                                            android:id="@+id/fb_user"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:background="#00FFFFFF"
@@ -256,6 +256,20 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/icons100"
                 tools:ignore="SpeakableTextPresentCheck" />
+
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="138dp"
+                android:layout_marginTop="41dp"
+                android:layout_marginEnd="114dp"
+                android:layout_marginBottom="64dp"
+                android:text="Save"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageButton3" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.bottomappbar.BottomAppBar
