@@ -142,21 +142,7 @@ class ScannerQrFragment : Fragment() {
                     val image = imageProxy.image
                     if(image != null) {
                         val processImage = InputImage.fromMediaImage(image, rotationDegrees)
-                       /* objectDetector.process(processImage)
-                            .addOnFailureListener {
-                                Log.e("CameraActivity","Error: $it.message")
-                                imageProxy.close()
-                            }.addOnSuccessListener { objects ->
-                                for( it in objects) {
 
-                                   if(binding.layout.childCount > 1)  {
-                                        binding.layout.removeViewAt(1)
-                                    }
-                                    val element = Draw(context, it.boundingBox, it.labels.firstOrNull()?.text ?: "Undefined")
-                                    binding.layout.addView(element,1)
-                                }
-                                imageProxy.close()
-                            }*/
 
                         //See https://developers.google.com/ml-kit/vision/barcode-scanning/android
                          barcodeScanner.process(processImage).addOnFailureListener {
@@ -164,10 +150,6 @@ class ScannerQrFragment : Fragment() {
                               imageProxy.close()
                           }.addOnSuccessListener { barcodes ->
                               for (barcode in barcodes) {
-
-                                  val bounds = barcode.boundingBox
-                                  val corners = barcode.cornerPoints
-
                                   val rawValue = barcode.rawValue
                                   val moshi = Moshi.Builder().build()
                                   val adapter: JsonAdapter<Agenda> = moshi.adapter(Agenda::class.java)

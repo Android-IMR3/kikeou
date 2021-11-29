@@ -276,46 +276,57 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/divider6">
 
-                <ImageView
-                    android:id="@+id/day1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="5dp"
-                    android:src="@drawable/homepage" />
-
-                <ImageView
-                    android:id="@+id/day2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="8dp"
-                    android:src="@drawable/homepage" />
-
-                <ImageView
-                    android:id="@+id/day3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="15dp"
-                    android:src="@drawable/homepage" />
-
-                <ImageView
-                    android:id="@+id/day4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:src="@drawable/homepage" />
-
-                <ImageView
-                    android:id="@+id/day5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                <ImageButton
+                    android:id="@+id/btnDay1"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#00FFFFFF"
                     android:src="@drawable/homepage"
-                    tools:layout_editor_absoluteX="228dp"
-                    tools:layout_editor_absoluteY="57dp" />
+                    android:tooltipText="Monday"
+                    tools:ignore="SpeakableTextPresentCheck" />
 
+                <ImageButton
+                    android:id="@+id/btnDay2"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#00FFFFFF"
+                    android:src="@drawable/homepage"
+                    android:tooltipText="Tuesday"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <ImageButton
+                    android:id="@+id/btnDay3"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#00FFFFFF"
+                    android:src="@drawable/homepage"
+                    android:tooltipText="Wednesday"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <ImageButton
+                    android:id="@+id/btnDay4"
+                    android:layout_width="50dp"
+
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#00FFFFFF"
+                    android:src="@drawable/homepage"
+                    android:tooltipText="Thursday"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <ImageButton
+                    android:id="@+id/btnDay5"
+                    android:layout_width="50dp"
+
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="#00FFFFFF"
+                    android:src="@drawable/homepage"
+                    android:tooltipText="Friday"
+                    tools:ignore="SpeakableTextPresentCheck" />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -324,11 +335,25 @@
             android:id="@+id/btn_update_Profil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:layout_marginBottom="70dp"
             android:text="Update"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/weekHome" />
+
+        <TextView
+            android:id="@+id/weekHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="41dp"
+            android:text="1"
+            app:layout_constraintBottom_toTopOf="@+id/btn_update_Profil"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.bottomappbar.BottomAppBar

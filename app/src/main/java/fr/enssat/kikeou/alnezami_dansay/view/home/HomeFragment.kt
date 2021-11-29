@@ -1,5 +1,6 @@
 package fr.enssat.kikeou.alnezami_dansay.view.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,6 +17,18 @@ import kotlinx.coroutines.InternalCoroutinesApi
 import android.graphics.BitmapFactory
 
 import android.graphics.Bitmap
+import android.icu.util.Calendar
+import android.net.Uri
+import android.os.Build
+import androidx.annotation.RequiresApi
+import com.google.android.gms.tasks.Tasks.call
+import fr.enssat.kikeou.alnezami_dansay.model.entity.Location
+import fr.enssat.kikeou.alnezami_dansay.model.entity.Status
+import java.time.LocalDate
+
+import java.time.DayOfWeek
+
+import java.time.temporal.ChronoField
 
 
 
@@ -27,6 +40,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
 
+    @RequiresApi(Build.VERSION_CODES.N)
     @InternalCoroutinesApi
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,8 +53,7 @@ class HomeFragment : Fragment() {
             binding(agenda)
             val btnUpdate = binding.btnUpdateProfil
             btnUpdate.setOnClickListener{
-                // Toast.makeText(context, "Update", Toast.LENGTH_SHORT).show()
-                //  findNavController().navigate(R.id.action_homeFragment_to_updateFragment)
+
                 val action = agenda?.let {
                     HomeFragmentDirections.actionHomeFragmentToUpdateFragment(
                         it
@@ -49,6 +62,14 @@ class HomeFragment : Fragment() {
                 action?.let { findNavController().navigate(it) }
 
             }
+            var btnCall =binding.phoneUser
+            btnCall.setOnClickListener{
+                call()
+            }
+            val btnEmail = binding.emailUser
+            btnEmail.setOnClickListener{
+                openMail()
+            }
         })
 
 
@@ -56,46 +77,84 @@ class HomeFragment : Fragment() {
 
             return binding.root
     }
+    @RequiresApi(Build.VERSION_CODES.N)
     fun binding(a: Agenda){
         binding.nameUser.setText(a.name);
         binding.emailUser.setText(a.contact.mail)
         binding.phoneUser.setText(a.contact.tel)
         binding.fbUser.setText(a.contact.fb)
+
         Picasso.get().load(a.photo).into(binding.appBarImage)
-      /*  var bitmap = BitmapFactory.decodeFile(setImageByStatus(a.loc.day1))
-        binding.day1.setTag(1,a.loc.day1)
-        binding.day1.setImageBitmap(bitmap)
-        bitmap = BitmapFactory.decodeFile(setImageByStatus(a.loc.day2))
-        binding.day1.setTag(1,a.loc.day2)
-        binding.day2.setImageBitmap(bitmap)
-        bitmap = BitmapFactory.decodeFile(setImageByStatus(a.loc.day3))
-        binding.day1.setTag(1,a.loc.day3)
-        binding.day3.setImageBitmap(bitmap)
-        bitmap = BitmapFactory.decodeFile(setImageByStatus(a.loc.day4))
-        binding.day1.setTag(1,a.loc.day4)
-        binding.day4.setImageBitmap(bitmap)
-        bitmap = BitmapFactory.decodeFile(setImageByStatus(a.loc.day5))
-        binding.day1.setTag(1,a.loc.day5)
-        binding.day5.setImageBitmap(bitmap)*/
+        binding.btnDay1.setImageResource(setImageByStatus(a.loc.day1))
+        binding.btnDay2.setImageResource(setImageByStatus(a.loc.day2))
+        binding.btnDay3.setImageResource(setImageByStatus(a.loc.day3))
+        binding.btnDay4.setImageResource(setImageByStatus(a.loc.day4))
+        binding.btnDay5.setImageResource(setImageByStatus(a.loc.day5))
+        binding.statusImg.setImageResource(getDayStatus(a.loc))
+        val week = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            LocalDate.now().with(ChronoField.ALIGNED_WEEK_OF_YEAR, a.week.toLong())
+        } else {
+            TODO("VERSION.SDK_INT < O")
+        }
+
+        val start = week.with(DayOfWeek.MONDAY)
+        binding.weekHome.setText("Week number "+a.week.toString()+" of "+start)
+
     }
-    fun setImageByStatus(location: String):String{
-        var path=""
-        when (location) {
-            "off" -> {
-                    path= "src/main/res/mipmap-xhdpi/icon11.png"
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun getDayStatus(location: Location):Int{
+        val calendar: Calendar = Calendar.getInstance()
+        val day: Int = calendar.get(Calendar.DAY_OF_WEEK)
+        var path = 0
+        path = when (day) {
+            Calendar.MONDAY -> {
+                setImageByStatus(location.day1)
             }
-            "home" -> {
-                path= "src/main/res/mipmap-xhdpi/icon14.png"
+            Calendar.TUESDAY -> {
+                setImageByStatus(location.day2)
             }
-            "work" -> {
-                path= "src/main/res/mipmap-xhdpi/icon13.png"
+            Calendar.WEDNESDAY -> {
+                setImageByStatus(location.day3)
+            }
+            Calendar.THURSDAY -> {
+                setImageByStatus(location.day4)
+            }
+            Calendar.FRIDAY -> {
+                setImageByStatus(location.day5)
+            }
+            else ->   setImageByStatus(location.day5)
+        }
+        return path
+    }
+    fun setImageByStatus(location: String):Int{
+        var path=0
+        path = when (location) {
+            Status.OFF.name -> {
+                R.drawable.vacation
+            }
+            Status.HOME.name -> {
+                R.drawable.homepage
+            }
+            Status.WORK.name -> {
+                R.drawable.work
 
             }
             else -> {
-                path= "src/main/res/mipmap-xhdpi/icon13.png"
+                R.drawable.homepage
             }
         }
 
+
         return  path
+    }
+    fun call() {
+        val dialIntent = Intent(Intent.ACTION_DIAL)
+        dialIntent.data = Uri.parse("tel:" + binding.phoneUser.text )
+        startActivity(dialIntent)
+    }
+    fun openMail(){
+        val emailIntent = Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+            "mailto",binding.emailUser.text.toString(), null));
+        startActivity(Intent.createChooser(emailIntent, "Send email..."));
     }
 }
