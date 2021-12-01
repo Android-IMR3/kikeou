@@ -1,30 +1,23 @@
 package fr.enssat.kikeou.alnezami_dansay.view.home
 
-import android.R.attr
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import fr.enssat.kikeou.alnezami_dansay.R
 import fr.enssat.kikeou.alnezami_dansay.databinding.FragmentRegisterBinding
-import fr.enssat.kikeou.alnezami_dansay.model.entity.Agenda
 import fr.enssat.kikeou.alnezami_dansay.model.entity.Contact
-import fr.enssat.kikeou.alnezami_dansay.model.entity.Location
 import fr.enssat.kikeou.alnezami_dansay.model.entity.Status
 import kotlinx.coroutines.InternalCoroutinesApi
 
 
-import android.R.attr.firstDayOfWeek
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.os.Build
 import androidx.annotation.RequiresApi
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 

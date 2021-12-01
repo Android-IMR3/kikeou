@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -16,16 +15,13 @@ import androidx.navigation.fragment.navArgs
 import fr.enssat.kikeou.alnezami_dansay.R
 
 import fr.enssat.kikeou.alnezami_dansay.databinding.FragmentUpdateBinding
-import fr.enssat.kikeou.alnezami_dansay.model.entity.Agenda
 import fr.enssat.kikeou.alnezami_dansay.model.entity.Contact
-import fr.enssat.kikeou.alnezami_dansay.model.entity.Location
 import fr.enssat.kikeou.alnezami_dansay.model.entity.Status
 import kotlinx.coroutines.InternalCoroutinesApi
 
 
 
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoField
 import java.util.*
 

@@ -15,11 +15,7 @@ import androidx.navigation.fragment.navArgs
 import com.squareup.picasso.Picasso
 import fr.enssat.kikeou.alnezami_dansay.R
 import fr.enssat.kikeou.alnezami_dansay.databinding.FragmentFormNewContactBinding
-import fr.enssat.kikeou.alnezami_dansay.model.entity.Agenda
-import fr.enssat.kikeou.alnezami_dansay.model.entity.Contact
-import fr.enssat.kikeou.alnezami_dansay.model.entity.Location
 import fr.enssat.kikeou.alnezami_dansay.model.entity.Status
-import fr.enssat.kikeou.alnezami_dansay.view.qr.QrViewModel
 import kotlinx.coroutines.InternalCoroutinesApi
 import java.time.DayOfWeek
 import java.time.LocalDate

@@ -19,17 +19,8 @@ package fr.enssat.kikeou.alnezami_dansay.view.list
 
 
 import android.app.Application
-import androidx.lifecycle.*
-import fr.enssat.kikeou.alnezami_dansay.model.KikeouDataBase
-import fr.enssat.kikeou.alnezami_dansay.model.entity.Agenda
-import fr.enssat.kikeou.alnezami_dansay.model.repository.AgendaRepository
 import fr.enssat.kikeou.alnezami_dansay.view.UsabelViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.InternalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.count
-
-import kotlinx.coroutines.launch
 
 /**
  * ViewModel for SleepTrackerFragment.

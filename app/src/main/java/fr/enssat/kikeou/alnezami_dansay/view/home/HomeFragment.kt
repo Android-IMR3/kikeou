@@ -12,18 +12,13 @@ import androidx.navigation.fragment.findNavController
 import com.squareup.picasso.Picasso
 import fr.enssat.kikeou.alnezami_dansay.R
 import fr.enssat.kikeou.alnezami_dansay.databinding.FragmentHomeBinding
-import fr.enssat.kikeou.alnezami_dansay.model.entity.Agenda
 import kotlinx.coroutines.InternalCoroutinesApi
-import android.graphics.BitmapFactory
 
-import android.graphics.Bitmap
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.net.Uri
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.google.android.gms.tasks.Tasks.call
-import fr.enssat.kikeou.alnezami_dansay.model.entity.Location
 import fr.enssat.kikeou.alnezami_dansay.model.entity.Status
 import java.time.LocalDate
 

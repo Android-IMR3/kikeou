@@ -12,10 +12,7 @@ import androidx.navigation.findNavController
 
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import de.hdodenhof.circleimageview.CircleImageView
 import fr.enssat.kikeou.alnezami_dansay.R
-import fr.enssat.kikeou.alnezami_dansay.model.entity.Agenda
-import fr.enssat.kikeou.alnezami_dansay.model.entity.Location
 import fr.enssat.kikeou.alnezami_dansay.model.entity.Status
 
 
