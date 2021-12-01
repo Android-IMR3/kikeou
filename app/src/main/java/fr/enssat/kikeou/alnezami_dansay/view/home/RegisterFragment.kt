@@ -9,15 +9,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import fr.enssat.kikeou.alnezami_dansay.R
 import fr.enssat.kikeou.alnezami_dansay.databinding.FragmentRegisterBinding
-import fr.enssat.kikeou.alnezami_dansay.model.entity.Contact
-import fr.enssat.kikeou.alnezami_dansay.model.entity.Status
 import kotlinx.coroutines.InternalCoroutinesApi
 
 
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
+import android.location.Location
 import android.os.Build
 import androidx.annotation.RequiresApi
+import fr.enssat.kikeou.alnezami_dansay.model.entity.*
 import java.util.*
 
 
@@ -40,53 +40,53 @@ class RegisterFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentRegisterBinding.inflate(inflater, container, false)
         registerViewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
-        var loc =Location()
-        bindingLocation(loc)
+
+        var locList =LOCs(listOf(LOC(),LOC(),LOC(),LOC(),LOC()) )
+        bindingLocation(locList)
         var agenda: Agenda
         val btn = binding.btnSignup
         btn.setOnClickListener {
-            agenda = getAgenda(loc)
+            agenda = getAgenda(locList)
             registerViewModel.signUp(agenda)
             findNavController().navigate(R.id.action_registerFragment_to_listFragment)
         }
 
         binding.btnDay1.setOnClickListener {
-            loc.day1=updataStatus(loc.day1)
-            binding.btnDay1.setImageResource(setImageByStatus(loc.day1))
+            locList.locs.get(0).value=updataStatus( locList.locs.get(0).value)
+            binding.btnDay1.setImageResource(setImageByStatus( locList.locs.get(0).value))
 
         }
-
         binding.btnDay2.setOnClickListener {
-            loc.day2= updataStatus(loc.day2)
-            binding.btnDay2.setImageResource(setImageByStatus(loc.day2))
+            locList.locs.get(1).value= updataStatus( locList.locs.get(1).value)
+            binding.btnDay2.setImageResource(setImageByStatus( locList.locs.get(1).value))
 
         }
         binding.btnDay3.setOnClickListener {
-            loc.day3= updataStatus(loc.day3)
-            binding.btnDay3.setImageResource(setImageByStatus(loc.day3))
+            locList.locs.get(2).value= updataStatus( locList.locs.get(2).value)
+            binding.btnDay3.setImageResource(setImageByStatus( locList.locs.get(2).value))
 
         }
         binding.btnDay4.setOnClickListener {
-            loc.day4 = updataStatus(loc.day4)
-            binding.btnDay4.setImageResource(setImageByStatus(loc.day4))
+            locList.locs.get(3).value = updataStatus( locList.locs.get(3).value)
+            binding.btnDay4.setImageResource(setImageByStatus( locList.locs.get(3).value))
         }
         binding.btnDay5.setOnClickListener {
-            loc.day5=updataStatus(loc.day5)
-            binding.btnDay5.setImageResource(setImageByStatus(loc.day5))
+            locList.locs.get(4).value=updataStatus( locList.locs.get(4).value)
+            binding.btnDay5.setImageResource(setImageByStatus( locList.locs.get(4).value))
 
         }
         return binding.root
     }
 
-    fun  bindingLocation(a: Location){
-        binding.btnDay1.setImageResource(setImageByStatus(a.day1))
-        binding.btnDay2.setImageResource(setImageByStatus(a.day2))
-        binding.btnDay3.setImageResource(setImageByStatus(a.day3))
-        binding.btnDay4.setImageResource(setImageByStatus(a.day4))
-        binding.btnDay5.setImageResource(setImageByStatus(a.day5))
+    fun  bindingLocation(a: LOCs){
+        binding.btnDay1.setImageResource(setImageByStatus(a.locs.get(0).value))
+        binding.btnDay2.setImageResource(setImageByStatus(a.locs.get(1).value))
+        binding.btnDay3.setImageResource(setImageByStatus(a.locs.get(2).value))
+        binding.btnDay4.setImageResource(setImageByStatus(a.locs.get(3).value))
+        binding.btnDay5.setImageResource(setImageByStatus(a.locs.get(4).value))
     }
   @RequiresApi(Build.VERSION_CODES.O)
-  fun getAgenda(loc:Location):Agenda{
+  fun getAgenda(loc: LOCs):Agenda{
       val name = binding.nameUser.text.toString()
       val week1 = binding.weekUser.text.toString()
       var weekOfYear = 0
@@ -103,7 +103,9 @@ class RegisterFragment : Fragment() {
       val email = binding.mailUser.text.toString();
       val phone = binding.phoneUser.text.toString();
       val fb = binding.fbUser.text.toString()
-    return Agenda(0,name,photo,weekOfYear, loc, Contact(email,phone,fb))
+      var l = Contacts(listOf(Contact("email",email),Contact("phone",phone),Contact("FaceBook",fb)))
+
+      return Agenda(0,name,photo, l,weekOfYear.toLong(),loc )
 
   }
 

@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import fr.enssat.kikeou.alnezami_dansay.model.KikeouDataBase
+import fr.enssat.kikeou.alnezami_dansay.model.entity.Agenda
 import fr.enssat.kikeou.alnezami_dansay.model.repository.AgendaRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.InternalCoroutinesApi

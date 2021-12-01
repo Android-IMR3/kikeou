@@ -1,6 +1,7 @@
 package fr.enssat.kikeou.alnezami_dansay.view.list
 
 import android.icu.util.Calendar
+import android.location.Location
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,9 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import fr.enssat.kikeou.alnezami_dansay.R
+import fr.enssat.kikeou.alnezami_dansay.model.entity.Agenda
+import fr.enssat.kikeou.alnezami_dansay.model.entity.LOC
+import fr.enssat.kikeou.alnezami_dansay.model.entity.LOCs
 import fr.enssat.kikeou.alnezami_dansay.model.entity.Status
 
 
@@ -63,27 +67,27 @@ class PersonAdapter: RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
             }
         }
         @RequiresApi(Build.VERSION_CODES.N)
-        fun getDayStatus(location: Location):Int{
+        fun getDayStatus(location: LOCs):Int{
             val calendar: Calendar = Calendar.getInstance()
             val day: Int = calendar.get(Calendar.DAY_OF_WEEK)
             var path = 0
             path = when (day) {
                 Calendar.MONDAY -> {
-                    setImageByStatus(location.day1)
+                    setImageByStatus(location.locs.get(0).value)
                 }
                 Calendar.TUESDAY -> {
-                    setImageByStatus(location.day2)
+                    setImageByStatus(location.locs.get(1).value)
                 }
                 Calendar.WEDNESDAY -> {
-                    setImageByStatus(location.day3)
+                    setImageByStatus(location.locs.get(2).value)
                 }
                 Calendar.THURSDAY -> {
-                    setImageByStatus(location.day4)
+                    setImageByStatus(location.locs.get(3).value)
                 }
                 Calendar.FRIDAY -> {
-                    setImageByStatus(location.day5)
+                    setImageByStatus(location.locs.get(4).value)
                 }
-                else ->   setImageByStatus(location.day5)
+                else ->   setImageByStatus(location.locs.get(0).value)
             }
             return path
         }
@@ -98,7 +102,6 @@ class PersonAdapter: RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
                 }
                 Status.WORK.name -> {
                     R.drawable.work
-
                 }
                 else -> {
                     R.drawable.homepage

@@ -1,6 +1,7 @@
 package fr.enssat.kikeou.alnezami_dansay.view.contact
 
 import android.icu.util.Calendar
+import android.location.Location
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,6 +15,8 @@ import androidx.navigation.fragment.navArgs
 import com.squareup.picasso.Picasso
 import fr.enssat.kikeou.alnezami_dansay.R
 import fr.enssat.kikeou.alnezami_dansay.databinding.FragmentContactBinding
+import fr.enssat.kikeou.alnezami_dansay.model.entity.Agenda
+import fr.enssat.kikeou.alnezami_dansay.model.entity.LOC
 import fr.enssat.kikeou.alnezami_dansay.model.entity.Status
 import kotlinx.coroutines.InternalCoroutinesApi
 import java.time.DayOfWeek
@@ -68,16 +71,16 @@ class ContactFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.N)
     fun binding(a: Agenda){
         binding.nameUser.setText(a.name);
-        binding.emailUser.setText(a.contact.mail)
-        binding.phoneUser.setText(a.contact.tel)
-        binding.fbUser.setText(a.contact.fb)
+        binding.emailUser.setText(a.contact.contacts.get(0).value)
+        binding.phoneUser.setText(a.contact.contacts.get(1).value)
+        binding.fbUser.setText(a.contact.contacts.get(2).value)
         Picasso.get().load(a.photo).into(binding.appBarImage)
-        binding.btnDay1.setImageResource(setImageByStatus(a.loc.day1))
-        binding.btnDay2.setImageResource(setImageByStatus(a.loc.day2))
-        binding.btnDay3.setImageResource(setImageByStatus(a.loc.day3))
-        binding.btnDay4.setImageResource(setImageByStatus(a.loc.day4))
-        binding.btnDay5.setImageResource(setImageByStatus(a.loc.day5))
-        binding.statusImg.setImageResource(getDayStatus(a.loc))
+        binding.btnDay1.setImageResource(setImageByStatus(a.loc.locs.get(0).value))
+        binding.btnDay2.setImageResource(setImageByStatus(a.loc.locs.get(1).value))
+        binding.btnDay3.setImageResource(setImageByStatus(a.loc.locs.get(2).value))
+        binding.btnDay4.setImageResource(setImageByStatus(a.loc.locs.get(3).value))
+        binding.btnDay5.setImageResource(setImageByStatus(a.loc.locs.get(4).value))
+        binding.statusImg.setImageResource(getDayStatus(a.loc.locs))
         val week = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             LocalDate.now().with(ChronoField.ALIGNED_WEEK_OF_YEAR, a.week.toLong())
         } else {
@@ -88,27 +91,27 @@ class ContactFragment : Fragment() {
         binding.weekHome3.setText("Week number "+a.week.toString()+" of "+start)
     }
     @RequiresApi(Build.VERSION_CODES.N)
-    fun getDayStatus(location: Location):Int{
+    fun getDayStatus(location: List<LOC>):Int{
         val calendar: Calendar = Calendar.getInstance()
         val day: Int = calendar.get(Calendar.DAY_OF_WEEK)
         var path = 0
         path = when (day) {
             Calendar.MONDAY -> {
-                setImageByStatus(location.day1)
+                setImageByStatus( location.get(0).value)
             }
             Calendar.TUESDAY -> {
-                setImageByStatus(location.day2)
+                setImageByStatus(location.get(1).value)
             }
             Calendar.WEDNESDAY -> {
-                setImageByStatus(location.day3)
+                setImageByStatus(location.get(2).value)
             }
             Calendar.THURSDAY -> {
-                setImageByStatus(location.day4)
+                setImageByStatus(location.get(3).value)
             }
             Calendar.FRIDAY -> {
-                setImageByStatus(location.day5)
+                setImageByStatus(location.get(4).value)
             }
-            else ->   setImageByStatus(location.day5)
+            else ->   setImageByStatus(location.get(0).value)
         }
         return path
     }

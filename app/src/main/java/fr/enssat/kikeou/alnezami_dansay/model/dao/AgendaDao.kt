@@ -2,6 +2,7 @@ package fr.enssat.kikeou.alnezami_dansay.model.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import fr.enssat.kikeou.alnezami_dansay.model.entity.Agenda
 
 
 @Dao

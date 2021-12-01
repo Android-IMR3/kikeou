@@ -36,6 +36,7 @@ import com.squareup.moshi.Moshi
 import fr.enssat.kikeou.alnezami_dansay.R
 import com.google.common.util.concurrent.ListenableFuture
 import fr.enssat.kikeou.alnezami_dansay.databinding.FragmentScannerQrBinding
+import fr.enssat.kikeou.alnezami_dansay.model.entity.Agenda
 import java.io.IOException
 
 

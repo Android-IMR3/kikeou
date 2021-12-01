@@ -2,6 +2,7 @@ package fr.enssat.kikeou.alnezami_dansay.model.repository
 
 import androidx.lifecycle.LiveData
 import fr.enssat.kikeou.alnezami_dansay.model.dao.AgendaDao
+import fr.enssat.kikeou.alnezami_dansay.model.entity.Agenda
 
 class AgendaRepository(private val dao: AgendaDao) {
     val allAgendas: LiveData<List<Agenda>> = dao.getAlphabetizedAgendas()

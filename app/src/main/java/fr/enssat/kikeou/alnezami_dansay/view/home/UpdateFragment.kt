@@ -2,6 +2,7 @@ package fr.enssat.kikeou.alnezami_dansay.view.home
 
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
+import android.location.Location
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -15,8 +16,7 @@ import androidx.navigation.fragment.navArgs
 import fr.enssat.kikeou.alnezami_dansay.R
 
 import fr.enssat.kikeou.alnezami_dansay.databinding.FragmentUpdateBinding
-import fr.enssat.kikeou.alnezami_dansay.model.entity.Contact
-import fr.enssat.kikeou.alnezami_dansay.model.entity.Status
+import fr.enssat.kikeou.alnezami_dansay.model.entity.*
 import kotlinx.coroutines.InternalCoroutinesApi
 
 
@@ -52,45 +52,45 @@ class UpdateFragment : Fragment() {
 
         val myprofile= args.myProfile
         binding(myprofile)
-        var loc =myprofile.loc
+        var locList =myprofile.loc
         val btnUpdate = binding.btnUpdateProfile
         btnUpdate.setOnClickListener {
-            updateViewModel.updateMyProfile(getAgenda(loc))
+            updateViewModel.updateMyProfile(getAgenda(locList))
            findNavController().navigate(R.id.action_updateFragment_to_homeFragment)
         }
 
         binding.btnDay1.setOnClickListener {
-            loc.day1=updataStatus(loc.day1)
-            binding.btnDay1.setImageResource(setImageByStatus(loc.day1))
+            locList.locs.get(0).value=updataStatus( locList.locs.get(0).value)
+            binding.btnDay1.setImageResource(setImageByStatus( locList.locs.get(0).value))
 
         }
-
         binding.btnDay2.setOnClickListener {
-           loc.day2= updataStatus(loc.day2)
-            binding.btnDay2.setImageResource(setImageByStatus(loc.day2))
+            locList.locs.get(1).value= updataStatus( locList.locs.get(1).value)
+            binding.btnDay2.setImageResource(setImageByStatus( locList.locs.get(1).value))
 
         }
         binding.btnDay3.setOnClickListener {
-           loc.day3= updataStatus(loc.day3)
-            binding.btnDay3.setImageResource(setImageByStatus(loc.day3))
+            locList.locs.get(2).value= updataStatus( locList.locs.get(2).value)
+            binding.btnDay3.setImageResource(setImageByStatus( locList.locs.get(2).value))
 
         }
         binding.btnDay4.setOnClickListener {
-            loc.day4 = updataStatus(loc.day4)
-            binding.btnDay4.setImageResource(setImageByStatus(loc.day4))
+            locList.locs.get(3).value = updataStatus( locList.locs.get(3).value)
+            binding.btnDay4.setImageResource(setImageByStatus( locList.locs.get(3).value))
         }
         binding.btnDay5.setOnClickListener {
-            loc.day5=updataStatus(loc.day5)
-            binding.btnDay5.setImageResource(setImageByStatus(loc.day5))
+            locList.locs.get(4).value=updataStatus( locList.locs.get(4).value)
+            binding.btnDay5.setImageResource(setImageByStatus( locList.locs.get(4).value))
 
         }
+
         return binding.root
     }
     fun  binding(a: Agenda){
         binding.nameUser.setText(a.name);
-        binding.emailUser.setText(a.contact.mail)
-        binding.phoneUser.setText(a.contact.tel)
-        binding.fbUser.setText(a.contact.fb)
+        binding.emailUser.setText(a.contact.contacts.get(0).value)
+        binding.phoneUser.setText(a.contact.contacts.get(1).value)
+        binding.fbUser.setText(a.contact.contacts.get(2).value)
 //to get date from the number of week
         val week = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             LocalDate.now().with(ChronoField.ALIGNED_WEEK_OF_YEAR, a.week.toLong())
@@ -104,14 +104,14 @@ class UpdateFragment : Fragment() {
         val format = formatter.format(date1)
         binding.weekUser.setText(format.toString())
         binding.photoUser.setText(a.photo)
-        binding.btnDay1.setImageResource(setImageByStatus(a.loc.day1))
-        binding.btnDay2.setImageResource(setImageByStatus(a.loc.day2))
-        binding.btnDay3.setImageResource(setImageByStatus(a.loc.day3))
-        binding.btnDay4.setImageResource(setImageByStatus(a.loc.day4))
-        binding.btnDay5.setImageResource(setImageByStatus(a.loc.day5))
+        binding.btnDay1.setImageResource(setImageByStatus(a.loc.locs.get(0).value))
+        binding.btnDay2.setImageResource(setImageByStatus(a.loc.locs.get(1).value))
+        binding.btnDay3.setImageResource(setImageByStatus(a.loc.locs.get(2).value))
+        binding.btnDay4.setImageResource(setImageByStatus(a.loc.locs.get(3).value))
+        binding.btnDay5.setImageResource(setImageByStatus(a.loc.locs.get(4).value))
     }
     @RequiresApi(Build.VERSION_CODES.O)
-    fun getAgenda(loc: Location):Agenda{
+    fun getAgenda(loc: LOCs):Agenda{
         val name = binding.nameUser.text.toString();
 
         val week1 = binding.weekUser.text.toString()
@@ -129,8 +129,10 @@ class UpdateFragment : Fragment() {
         val email = binding.emailUser.text.toString();
         val phone = binding.phoneUser.text.toString();
         val fb = binding.fbUser.text.toString()
+        var l = Contacts(listOf(Contact("email",email),Contact("phone",phone),Contact("FaceBook",fb)))
 
-        return Agenda(0,name,photo,weekOfYear,loc, Contact(email,phone,fb))
+
+        return Agenda(0,name,photo,l,weekOfYear.toLong(),loc)
 
     }
     fun updataStatus( loc: String):String{
