@@ -120,14 +120,14 @@ class ContactFragment : Fragment() {
     }
     fun setImageByStatus(location: String):Int{
         var path=0
-        path = when (location) {
-            Status.OFF.name -> {
+        path = when (location){
+            Status.OFF.name,Status.Off.name -> {
                 R.drawable.vacation
             }
-            Status.HOME.name -> {
+            Status.HOME.name,Status.teletravail.name -> {
                 R.drawable.homepage
             }
-            Status.WORK.name -> {
+            Status.WORK.name,"WF 036" -> {
                 R.drawable.work
 
             }
@@ -135,8 +135,6 @@ class ContactFragment : Fragment() {
                 R.drawable.homepage
             }
         }
-
-
         return  path
     }
 

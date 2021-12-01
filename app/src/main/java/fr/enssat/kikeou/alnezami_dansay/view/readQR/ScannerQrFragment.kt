@@ -155,6 +155,7 @@ class ScannerQrFragment : Fragment() {
                                   val adapter: JsonAdapter<Agenda> = moshi.adapter(Agenda::class.java)
                                   try{
                                       val contact = adapter.fromJson(rawValue)
+                                      Log.e("ScannerActivity", rawValue)
                                       //update agenda
                                       if(args.updateAgenda!= null){
                                           contact?.id= args.updateAgenda!!.id

@@ -17,6 +17,7 @@ import kotlinx.coroutines.InternalCoroutinesApi
 import android.graphics.BitmapFactory
 
 import android.graphics.Bitmap
+import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.net.Uri
 import android.os.Build
@@ -96,7 +97,11 @@ class HomeFragment : Fragment() {
         } else {
             TODO("VERSION.SDK_INT < O")
         }
-
+        //local date to date
+        val date1 = SimpleDateFormat("yyyy-MM-dd").parse(week.toString())
+        //formatting
+        val formatter = SimpleDateFormat("dd/MM/yyyy")
+        val format = formatter.format(date1)
         val start = week.with(DayOfWeek.MONDAY)
         binding.weekHome.setText("Week number "+a.week.toString()+" of "+start)
 
@@ -129,13 +134,13 @@ class HomeFragment : Fragment() {
     fun setImageByStatus(location: String):Int{
         var path=0
         path = when (location) {
-            Status.OFF.name -> {
+            Status.OFF.name,Status.Off.name -> {
                 R.drawable.vacation
             }
-            Status.HOME.name -> {
+            Status.HOME.name,Status.teletravail.name -> {
                 R.drawable.homepage
             }
-            Status.WORK.name -> {
+            Status.WORK.name,"WF 036" -> {
                 R.drawable.work
 
             }
