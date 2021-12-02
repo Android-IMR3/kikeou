@@ -9,19 +9,19 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
 
 
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             tools:context=".fragment.home.RegisterFragment">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout"
-                android:layout_width="411dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 app:layout_anchorGravity="center"
@@ -53,54 +53,54 @@
 
                     <ImageButton
                         android:id="@+id/btnDay1"
-                        android:tooltipText="Monday"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_weight="1"
                         android:backgroundTint="#00FFFFFF"
                         android:src="@drawable/homepage"
+                        android:tooltipText="Monday"
                         tools:ignore="SpeakableTextPresentCheck" />
 
                     <ImageButton
                         android:id="@+id/btnDay2"
-                        android:tooltipText="Tuesday"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_weight="1"
                         android:backgroundTint="#00FFFFFF"
                         android:src="@drawable/homepage"
+                        android:tooltipText="Tuesday"
                         tools:ignore="SpeakableTextPresentCheck" />
 
                     <ImageButton
                         android:id="@+id/btnDay3"
-                        android:tooltipText="Wednesday"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_weight="1"
                         android:backgroundTint="#00FFFFFF"
                         android:src="@drawable/homepage"
+                        android:tooltipText="Wednesday"
                         tools:ignore="SpeakableTextPresentCheck" />
 
                     <ImageButton
                         android:id="@+id/btnDay4"
-                        android:tooltipText="Thursday"
-
                         android:layout_width="50dp"
+
                         android:layout_height="50dp"
                         android:layout_weight="1"
                         android:backgroundTint="#00FFFFFF"
                         android:src="@drawable/homepage"
+                        android:tooltipText="Thursday"
                         tools:ignore="SpeakableTextPresentCheck" />
 
                     <ImageButton
                         android:id="@+id/btnDay5"
-                        android:tooltipText="Friday"
-
                         android:layout_width="50dp"
+
                         android:layout_height="50dp"
                         android:layout_weight="1"
                         android:backgroundTint="#00FFFFFF"
                         android:src="@drawable/homepage"
+                        android:tooltipText="Friday"
                         tools:ignore="SpeakableTextPresentCheck" />
                 </LinearLayout>
 
@@ -217,24 +217,38 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="date" />
+                    android:inputType="date"
+                    tools:ignore="SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/btnUpdateProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="32dp"
                 android:text="@string/update_btn"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/bottomAppBar2"
+        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+
+        <include
+            android:id="@+id/nav_bottom"
+            layout="@layout/nav_bottom" />
+    </com.google.android.material.bottomappbar.BottomAppBar>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -64,6 +64,22 @@ class ContactFragment : Fragment() {
             findNavController().navigate(R.id.action_contactFragment_to_listFragment)
         }
 
+       val btnList = binding.navBottom.btnList
+        btnList.setOnClickListener{_ ->
+             findNavController().navigate(R.id.action_contactFragment_to_listFragment)
+        }
+        val btnGenerate = binding.navBottom.btnGenerate
+        btnGenerate.setOnClickListener{_ ->
+            findNavController().navigate(R.id.action_contactFragment_to_qrFragment)
+        }
+        val btnScanner = binding.navBottom.btnScanner
+        btnScanner.setOnClickListener{_ ->
+            findNavController().navigate(R.id.action_contactFragment_to_scannerQrFragment)
+        }
+        val btnHome = binding.navBottom.homeBtn
+        btnHome.setOnClickListener{_ ->
+            findNavController().navigate(R.id.action_contactFragment_to_homeFragment)
+        }
 
 
        return binding.root

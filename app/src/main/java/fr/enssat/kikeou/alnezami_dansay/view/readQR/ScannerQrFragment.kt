@@ -71,7 +71,22 @@ class ScannerQrFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentScannerQrBinding.inflate(inflater, container, false)
 
-
+        val btnList = binding.navBottom.btnList
+        btnList.setOnClickListener{_ ->
+            findNavController().navigate(R.id.action_scannerQrFragment_to_listFragment)
+        }
+        val btnGenerate = binding.navBottom.btnGenerate
+        btnGenerate.setOnClickListener{_ ->
+            findNavController().navigate(R.id.action_scannerQrFragment_to_qrFragment)
+        }
+        val btnScanner = binding.navBottom.btnScanner
+        btnScanner.setOnClickListener{_ ->
+           // findNavController().navigate(R.id.action_formNewContactFragment_to_scannerQrFragment)
+        }
+        val btnHome = binding.navBottom.homeBtn
+        btnHome.setOnClickListener{_ ->
+            findNavController().navigate(R.id.action_scannerQrFragment_to_homeFragment)
+        }
 
         return binding.root
     }
@@ -203,30 +218,4 @@ class ScannerQrFragment : Fragment() {
         )
     }
 
-    private class Draw(context: Context?, var rect: Rect, var text: String) : View(context) {
-        lateinit var paint: Paint
-        lateinit var textPaint: Paint
-
-        init {
-            init()
-        }
-
-        private fun init() {
-            paint = Paint()
-            paint.color = Color.RED
-            paint.strokeWidth = 20f
-            paint.style = Paint.Style.STROKE
-
-            textPaint = Paint()
-            textPaint.color = Color.RED
-            textPaint.style = Paint.Style.FILL
-            textPaint.textSize = 80f
-        }
-
-        override fun onDraw(canvas: Canvas) {
-            super.onDraw(canvas)
-            canvas.drawText(text, rect.centerX().toFloat(), rect.centerY().toFloat(), textPaint)
-            canvas.drawRect(rect.left.toFloat(), rect.top.toFloat(), rect.right.toFloat(), rect.bottom.toFloat(), paint)
-        }
-    }
 }

@@ -62,6 +62,22 @@ class FormNewContactFragment : Fragment() {
 
 
 
+        val btnList = binding.navBottom.btnList
+        btnList.setOnClickListener{_ ->
+            findNavController().navigate(R.id.action_formNewContactFragment_to_listFragment)
+        }
+        val btnGenerate = binding.navBottom.btnGenerate
+        btnGenerate.setOnClickListener{_ ->
+             findNavController().navigate(R.id.action_formNewContactFragment_to_qrFragment)
+        }
+        val btnScanner = binding.navBottom.btnScanner
+        btnScanner.setOnClickListener{_ ->
+            findNavController().navigate(R.id.action_formNewContactFragment_to_scannerQrFragment)
+        }
+        val btnHome = binding.navBottom.homeBtn
+        btnHome.setOnClickListener{_ ->
+            findNavController().navigate(R.id.action_formNewContactFragment_to_homeFragment)
+
 
 
         return binding.root

@@ -32,13 +32,14 @@
     </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.bottomappbar.BottomAppBar
-        android:id="@+id/bottomAppBar2"
         style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom">
 
-        <include layout="@layout/nav_bottom" android:id="@+id/nav_bottom" />
+        <include
+            android:id="@+id/nav_bottom"
+            layout="@layout/nav_bottom" />
     </com.google.android.material.bottomappbar.BottomAppBar>
 
 

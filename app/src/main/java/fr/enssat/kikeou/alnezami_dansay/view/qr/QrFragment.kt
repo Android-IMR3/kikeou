@@ -42,7 +42,6 @@ class QrFragment : Fragment() {
 
         var qrCodeView =binding.qrCodeView
         var uri : Uri? = null
-
         myacountViewModel.myAcount.observe(viewLifecycleOwner, Observer{agenda ->
 
             var json  =myacountViewModel.getJson(agenda)
@@ -50,10 +49,6 @@ class QrFragment : Fragment() {
             qrCodeView.setImageBitmap(bitmap)
 
             try {
-                //in your android manifest
-                //<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-                //to access media storage for android <10
-
                 val values = ContentValues()
                 values.put(MediaStore.MediaColumns.DISPLAY_NAME, QR_CODE_FILE_NAME)
                 values.put(MediaStore.MediaColumns.MIME_TYPE, "image/png")
@@ -73,7 +68,6 @@ class QrFragment : Fragment() {
                 val btn = binding.navBottom.homeBtn
                 btn.setOnClickListener{_ ->
                     findNavController().navigate(R.id.action_listFragment_to_qrFragment)
-                    //Toast.makeText(activity,"Text!",Toast.LENGTH_SHORT).show()
                 }
                 val btnShare = binding.shareBtn2
                 btnShare.setOnClickListener{_ ->
@@ -82,25 +76,27 @@ class QrFragment : Fragment() {
                     intent.putExtra(Intent.EXTRA_STREAM, uri)
                     startActivity(Intent.createChooser(intent, "Share Image"))
                 }
-
-                //to get png in Android Studio : View -> Tool Windows -> Device File Explorer
-                //in storage/self/primary/Documents/Kikeou
-                //also in sdcard/Documents/Kikeou
-                //synchronize Documents folder if needed
             } catch (e: Exception) {
                 e.printStackTrace()
             }
         })
 
-
-
-
-
-
-
-
-
-
+        val btnList = binding.navBottom.btnList
+        btnList.setOnClickListener{_ ->
+             findNavController().navigate(R.id.action_qrFragment_to_listFragment)
+        }
+        val btnGenerate = binding.navBottom.btnGenerate
+        btnGenerate.setOnClickListener{_ ->
+           // findNavController().navigate(R.id.)
+        }
+        val btnScanner = binding.navBottom.btnScanner
+        btnScanner.setOnClickListener{_ ->
+            findNavController().navigate(R.id.action_qrFragment_to_scannerQrFragment)
+        }
+        val btnHome = binding.navBottom.homeBtn
+        btnHome.setOnClickListener{_ ->
+            findNavController().navigate(R.id.action_qrFragment_to_homeFragment)
+        }
         return binding.root
 
     }
