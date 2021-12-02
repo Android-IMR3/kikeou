@@ -1,6 +1,5 @@
 package fr.enssat.kikeou.alnezami_dansay.model.entity
 
-import android.location.Location
 import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -9,6 +8,11 @@ import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.JsonClass
 import com.squareup.moshi.Moshi
 import kotlinx.parcelize.Parcelize
+import com.google.gson.reflect.TypeToken
+
+import com.google.gson.Gson
+import java.lang.reflect.Type
+
 
 @Parcelize
 @JsonClass(generateAdapter = true)
@@ -17,9 +21,9 @@ import kotlinx.parcelize.Parcelize
     @PrimaryKey(autoGenerate = true) var id: Int,
     val name: String,
     var photo: String,
-    val contact: Contacts,
+    val contact: List<Contact>,
     val week: Long,
-    val loc: LOCs
+    val loc: List<LOC>
 ): Parcelable {
 
     public fun toJson(): String {
@@ -29,34 +33,17 @@ import kotlinx.parcelize.Parcelize
     }
 
 
+
     companion object {
         public fun fromJson(json: String): Agenda? {
             val moshi = Moshi.Builder().build()
             val adapter: JsonAdapter<Agenda> = moshi.adapter(Agenda::class.java)
           return adapter.fromJson(json)
         }
+
     }
 }
-@Parcelize
-@JsonClass(generateAdapter = true)
-class Contacts(val contacts :List<Contact>):Parcelable{
 
-    public fun toJson(): String {
-        val moshi = Moshi.Builder().build()
-        val adapter: JsonAdapter<Contacts> = moshi.adapter(Contacts::class.java)
-        return adapter.toJson(this)
-    }
-
-
-    companion object {
-        public fun fromJson(json: String): Contacts? {
-            val moshi = Moshi.Builder().build()
-            val adapter: JsonAdapter<Contacts> = moshi.adapter(Contacts::class.java)
-            return adapter.fromJson(json)
-        }
-    }
-
-}
 
 @Parcelize
 @JsonClass(generateAdapter = true)
@@ -71,6 +58,7 @@ class Contact (
         return adapter.toJson(this)
     }
 
+
     companion object {
         public fun fromJson(json: String): Contact? {
             val moshi = Moshi.Builder().build()
@@ -84,28 +72,8 @@ class Contact (
 
 @Parcelize
 @JsonClass(generateAdapter = true)
-class LOCs(var locs:List<LOC>):Parcelable{
-
-    public fun toJson(): String {
-        val moshi = Moshi.Builder().build()
-        val adapter: JsonAdapter<LOCs> = moshi.adapter(LOCs::class.java)
-        return adapter.toJson(this)
-    }
-
-
-    companion object {
-        public fun fromJson(json: String): LOCs? {
-            val moshi = Moshi.Builder().build()
-            val adapter: JsonAdapter<LOCs> = moshi.adapter(LOCs::class.java)
-            return adapter.fromJson(json)
-        }
-    }
-}
-
-@Parcelize
-@JsonClass(generateAdapter = true)
 data class LOC (
-    val day: Long,
+    var day: Long,
     var value: String
 ): Parcelable{
     constructor():this(1,Status.WORK.name)
@@ -127,6 +95,44 @@ data class LOC (
 
 class Converters {
     @TypeConverter
+    fun fromContactList(countryLang: List<Contact?>?): String? {
+        if (countryLang == null) {
+            return null
+        }
+        val gson = Gson()
+        val type: Type = object : TypeToken<List<Contact?>?>() {}.getType()
+        return gson.toJson(countryLang, type)
+    }
+
+    @TypeConverter
+    fun toContactList(countryLangString: String?): List<Contact?>? {
+        if (countryLangString == null) {
+            return null
+        }
+        val gson = Gson()
+        val type: Type = object : TypeToken<List<Contact?>?>() {}.getType()
+        return gson.fromJson<List<Contact>>(countryLangString, type)
+    }
+    @TypeConverter
+    fun fromLOCList(countryLang: List<LOC?>?): String? {
+        if (countryLang == null) {
+            return null
+        }
+        val gson = Gson()
+        val type: Type = object : TypeToken<List<LOC?>?>() {}.getType()
+        return gson.toJson(countryLang, type)
+    }
+
+    @TypeConverter
+    fun toLOCList(countryLangString: String?): List<LOC?>? {
+        if (countryLangString == null) {
+            return null
+        }
+        val gson = Gson()
+        val type: Type = object : TypeToken<List<LOC?>?>() {}.getType()
+        return gson.fromJson<List<LOC>>(countryLangString, type)
+    }
+    @TypeConverter
     fun contactFromJson(value: String): Contact? {
         return Contact.fromJson(value)
     }
@@ -135,15 +141,7 @@ class Converters {
     fun contactToJson(contact: Contact?): String? {
         return contact?.toJson()
     }
-    @TypeConverter
-    fun contactsFromJson(value: String): Contacts? {
-        return Contacts.fromJson(value)
-    }
 
-    @TypeConverter
-    fun contactsToJson(contact: Contacts?): String? {
-        return contact?.toJson()
-    }
 
     @TypeConverter
     fun locFromJson(value: String): LOC? {
@@ -154,13 +152,5 @@ class Converters {
     fun locToJson(loc: LOC?): String? {
         return loc?.toJson()
     }
-    @TypeConverter
-    fun locsFromJson(value: String): LOCs? {
-        return LOCs.fromJson(value)
-    }
 
-    @TypeConverter
-    fun locsToJson(loc: LOCs?): String? {
-        return loc?.toJson()
-    }
 }

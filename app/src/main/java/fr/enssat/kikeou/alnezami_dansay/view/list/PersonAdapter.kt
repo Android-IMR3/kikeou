@@ -16,7 +16,6 @@ import com.squareup.picasso.Picasso
 import fr.enssat.kikeou.alnezami_dansay.R
 import fr.enssat.kikeou.alnezami_dansay.model.entity.Agenda
 import fr.enssat.kikeou.alnezami_dansay.model.entity.LOC
-import fr.enssat.kikeou.alnezami_dansay.model.entity.LOCs
 import fr.enssat.kikeou.alnezami_dansay.model.entity.Status
 
 
@@ -67,27 +66,27 @@ class PersonAdapter: RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
             }
         }
         @RequiresApi(Build.VERSION_CODES.N)
-        fun getDayStatus(location: LOCs):Int{
+        fun getDayStatus(location: List<LOC>):Int{
             val calendar: Calendar = Calendar.getInstance()
             val day: Int = calendar.get(Calendar.DAY_OF_WEEK)
             var path = 0
             path = when (day) {
                 Calendar.MONDAY -> {
-                    setImageByStatus(location.locs.get(0).value)
+                    setImageByStatus(location.get(0).value)
                 }
                 Calendar.TUESDAY -> {
-                    setImageByStatus(location.locs.get(1).value)
+                    setImageByStatus(location.get(1).value)
                 }
                 Calendar.WEDNESDAY -> {
-                    setImageByStatus(location.locs.get(2).value)
+                    setImageByStatus(location.get(2).value)
                 }
                 Calendar.THURSDAY -> {
-                    setImageByStatus(location.locs.get(3).value)
+                    setImageByStatus(location.get(3).value)
                 }
                 Calendar.FRIDAY -> {
-                    setImageByStatus(location.locs.get(4).value)
+                    setImageByStatus(location.get(4).value)
                 }
-                else ->   setImageByStatus(location.locs.get(0).value)
+                else ->   setImageByStatus(location.get(0).value)
             }
             return path
         }

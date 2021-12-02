@@ -18,7 +18,6 @@ import fr.enssat.kikeou.alnezami_dansay.R
 import fr.enssat.kikeou.alnezami_dansay.databinding.FragmentFormNewContactBinding
 import fr.enssat.kikeou.alnezami_dansay.model.entity.Agenda
 import fr.enssat.kikeou.alnezami_dansay.model.entity.LOC
-import fr.enssat.kikeou.alnezami_dansay.model.entity.LOCs
 import fr.enssat.kikeou.alnezami_dansay.model.entity.Status
 import kotlinx.coroutines.InternalCoroutinesApi
 import java.time.DayOfWeek
@@ -68,15 +67,15 @@ class FormNewContactFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.N)
     fun binding(a: Agenda){
         binding.nameUser.setText(a.name);
-        binding.emailUser.setText(a.contact.contacts.get(0).value)
-        binding.phoneUser.setText(a.contact.contacts.get(1).value)
-        binding.fbUser.setText(a.contact.contacts.get(2).value)
+        binding.emailUser.setText(a.contact.get(0).value)
+        binding.phoneUser.setText(a.contact.get(1).value)
+        binding.fbUser.setText(a.contact.get(2).value)
         Picasso.get().load(a.photo).into(binding.appBarImage)
-        binding.btnDay1.setImageResource(setImageByStatus(a.loc.locs.get(0).value))
-        binding.btnDay2.setImageResource(setImageByStatus(a.loc.locs.get(1).value))
-        binding.btnDay3.setImageResource(setImageByStatus(a.loc.locs.get(2).value))
-        binding.btnDay4.setImageResource(setImageByStatus(a.loc.locs.get(3).value))
-        binding.btnDay5.setImageResource(setImageByStatus(a.loc.locs.get(4).value))
+        binding.btnDay1.setImageResource(setImageByStatus(a.loc.get(0).value))
+        binding.btnDay2.setImageResource(setImageByStatus(a.loc.get(1).value))
+        binding.btnDay3.setImageResource(setImageByStatus(a.loc.get(2).value))
+        binding.btnDay4.setImageResource(setImageByStatus(a.loc.get(3).value))
+        binding.btnDay5.setImageResource(setImageByStatus(a.loc.get(4).value))
         binding.statusImg.setImageResource(getDayStatus(a.loc))
         val week = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             LocalDate.now().with(ChronoField.ALIGNED_WEEK_OF_YEAR, a.week.toLong())
@@ -88,27 +87,27 @@ class FormNewContactFragment : Fragment() {
         binding.weekHome2.setText("Week number "+a.week.toString()+" of "+start)
     }
     @RequiresApi(Build.VERSION_CODES.N)
-    fun getDayStatus(location: LOCs):Int{
+    fun getDayStatus(location: List<LOC>):Int{
         val calendar: Calendar = Calendar.getInstance()
         val day: Int = calendar.get(Calendar.DAY_OF_WEEK)
         var path = 0
         path = when (day) {
             Calendar.MONDAY -> {
-                setImageByStatus(location.locs.get(0).value)
+                setImageByStatus(location.get(0).value)
             }
             Calendar.TUESDAY -> {
-                setImageByStatus(location.locs.get(1).value)
+                setImageByStatus(location.get(1).value)
             }
             Calendar.WEDNESDAY -> {
-                setImageByStatus(location.locs.get(2).value)
+                setImageByStatus(location.get(2).value)
             }
             Calendar.THURSDAY -> {
-                setImageByStatus(location.locs.get(3).value)
+                setImageByStatus(location.get(3).value)
             }
             Calendar.FRIDAY -> {
-                setImageByStatus(location.locs.get(4).value)
+                setImageByStatus(location.get(4).value)
             }
-            else ->   setImageByStatus(location.locs.get(0).value)
+            else ->   setImageByStatus(location.get(0).value)
         }
         return path
     }

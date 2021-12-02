@@ -99,7 +99,7 @@ dependencies {
     implementation  "androidx.camera:camera-view:$camera_view"
     implementation  "com.google.mlkit:object-detection-custom:$mlkit"
 
-
+    implementation 'com.google.code.gson:gson:2.8.9'
 
     //implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
     //implementation "org.jetbrains.kotlin:kotlin-reflect:1.1.0"

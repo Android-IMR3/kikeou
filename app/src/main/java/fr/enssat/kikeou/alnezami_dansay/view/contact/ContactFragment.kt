@@ -71,16 +71,16 @@ class ContactFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.N)
     fun binding(a: Agenda){
         binding.nameUser.setText(a.name);
-        binding.emailUser.setText(a.contact.contacts.get(0).value)
-        binding.phoneUser.setText(a.contact.contacts.get(1).value)
-        binding.fbUser.setText(a.contact.contacts.get(2).value)
+        binding.emailUser.setText(a.contact.get(0).value)
+        binding.phoneUser.setText(a.contact.get(1).value)
+        binding.fbUser.setText(a.contact.get(2).value)
         Picasso.get().load(a.photo).into(binding.appBarImage)
-        binding.btnDay1.setImageResource(setImageByStatus(a.loc.locs.get(0).value))
-        binding.btnDay2.setImageResource(setImageByStatus(a.loc.locs.get(1).value))
-        binding.btnDay3.setImageResource(setImageByStatus(a.loc.locs.get(2).value))
-        binding.btnDay4.setImageResource(setImageByStatus(a.loc.locs.get(3).value))
-        binding.btnDay5.setImageResource(setImageByStatus(a.loc.locs.get(4).value))
-        binding.statusImg.setImageResource(getDayStatus(a.loc.locs))
+        binding.btnDay1.setImageResource(setImageByStatus(a.loc.get(0).value))
+        binding.btnDay2.setImageResource(setImageByStatus(a.loc.get(1).value))
+        binding.btnDay3.setImageResource(setImageByStatus(a.loc.get(2).value))
+        binding.btnDay4.setImageResource(setImageByStatus(a.loc.get(3).value))
+        binding.btnDay5.setImageResource(setImageByStatus(a.loc.get(4).value))
+        binding.statusImg.setImageResource(getDayStatus(a.loc))
         val week = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             LocalDate.now().with(ChronoField.ALIGNED_WEEK_OF_YEAR, a.week.toLong())
         } else {

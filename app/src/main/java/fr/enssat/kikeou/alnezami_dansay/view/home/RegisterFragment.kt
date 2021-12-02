@@ -41,7 +41,7 @@ class RegisterFragment : Fragment() {
         binding = FragmentRegisterBinding.inflate(inflater, container, false)
         registerViewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
 
-        var locList =LOCs(listOf(LOC(),LOC(),LOC(),LOC(),LOC()) )
+        var locList =listOf(LOC(),LOC(),LOC(),LOC(),LOC())
         bindingLocation(locList)
         var agenda: Agenda
         val btn = binding.btnSignup
@@ -52,41 +52,46 @@ class RegisterFragment : Fragment() {
         }
 
         binding.btnDay1.setOnClickListener {
-            locList.locs.get(0).value=updataStatus( locList.locs.get(0).value)
-            binding.btnDay1.setImageResource(setImageByStatus( locList.locs.get(0).value))
+            locList.get(0).value=updataStatus( locList.get(0).value)
+            locList.get(0).day =1
+            binding.btnDay1.setImageResource(setImageByStatus( locList.get(0).value))
 
         }
         binding.btnDay2.setOnClickListener {
-            locList.locs.get(1).value= updataStatus( locList.locs.get(1).value)
-            binding.btnDay2.setImageResource(setImageByStatus( locList.locs.get(1).value))
+            locList.get(1).value= updataStatus( locList.get(1).value)
+            locList.get(1).day =2
+            binding.btnDay2.setImageResource(setImageByStatus( locList.get(1).value))
 
         }
         binding.btnDay3.setOnClickListener {
-            locList.locs.get(2).value= updataStatus( locList.locs.get(2).value)
-            binding.btnDay3.setImageResource(setImageByStatus( locList.locs.get(2).value))
+            locList.get(2).value= updataStatus( locList.get(2).value)
+            locList.get(2).day= 3
+            binding.btnDay3.setImageResource(setImageByStatus( locList.get(2).value))
 
         }
         binding.btnDay4.setOnClickListener {
-            locList.locs.get(3).value = updataStatus( locList.locs.get(3).value)
-            binding.btnDay4.setImageResource(setImageByStatus( locList.locs.get(3).value))
+            locList.get(3).value = updataStatus( locList.get(3).value)
+            locList.get(3).day= 4
+            binding.btnDay4.setImageResource(setImageByStatus( locList.get(3).value))
         }
         binding.btnDay5.setOnClickListener {
-            locList.locs.get(4).value=updataStatus( locList.locs.get(4).value)
-            binding.btnDay5.setImageResource(setImageByStatus( locList.locs.get(4).value))
+            locList.get(4).value=updataStatus( locList.get(4).value)
+            locList.get(4).day= 5
+            binding.btnDay5.setImageResource(setImageByStatus( locList.get(4).value))
 
         }
         return binding.root
     }
 
-    fun  bindingLocation(a: LOCs){
-        binding.btnDay1.setImageResource(setImageByStatus(a.locs.get(0).value))
-        binding.btnDay2.setImageResource(setImageByStatus(a.locs.get(1).value))
-        binding.btnDay3.setImageResource(setImageByStatus(a.locs.get(2).value))
-        binding.btnDay4.setImageResource(setImageByStatus(a.locs.get(3).value))
-        binding.btnDay5.setImageResource(setImageByStatus(a.locs.get(4).value))
+    fun  bindingLocation(a: List<LOC>){
+        binding.btnDay1.setImageResource(setImageByStatus(a.get(0).value))
+        binding.btnDay2.setImageResource(setImageByStatus(a.get(1).value))
+        binding.btnDay3.setImageResource(setImageByStatus(a.get(2).value))
+        binding.btnDay4.setImageResource(setImageByStatus(a.get(3).value))
+        binding.btnDay5.setImageResource(setImageByStatus(a.get(4).value))
     }
   @RequiresApi(Build.VERSION_CODES.O)
-  fun getAgenda(loc: LOCs):Agenda{
+  fun getAgenda(loc: List<LOC>):Agenda{
       val name = binding.nameUser.text.toString()
       val week1 = binding.weekUser.text.toString()
       var weekOfYear = 0
@@ -103,7 +108,7 @@ class RegisterFragment : Fragment() {
       val email = binding.mailUser.text.toString();
       val phone = binding.phoneUser.text.toString();
       val fb = binding.fbUser.text.toString()
-      var l = Contacts(listOf(Contact("email",email),Contact("phone",phone),Contact("FaceBook",fb)))
+      var l = listOf(Contact("email",email),Contact("phone",phone),Contact("FaceBook",fb))
 
       return Agenda(0,name,photo, l,weekOfYear.toLong(),loc )
 

@@ -60,27 +60,27 @@ class UpdateFragment : Fragment() {
         }
 
         binding.btnDay1.setOnClickListener {
-            locList.locs.get(0).value=updataStatus( locList.locs.get(0).value)
-            binding.btnDay1.setImageResource(setImageByStatus( locList.locs.get(0).value))
+            locList.get(0).value=updataStatus( locList.get(0).value)
+            binding.btnDay1.setImageResource(setImageByStatus( locList.get(0).value))
 
         }
         binding.btnDay2.setOnClickListener {
-            locList.locs.get(1).value= updataStatus( locList.locs.get(1).value)
-            binding.btnDay2.setImageResource(setImageByStatus( locList.locs.get(1).value))
+            locList.get(1).value= updataStatus( locList.get(1).value)
+            binding.btnDay2.setImageResource(setImageByStatus( locList.get(1).value))
 
         }
         binding.btnDay3.setOnClickListener {
-            locList.locs.get(2).value= updataStatus( locList.locs.get(2).value)
-            binding.btnDay3.setImageResource(setImageByStatus( locList.locs.get(2).value))
+            locList.get(2).value= updataStatus( locList.get(2).value)
+            binding.btnDay3.setImageResource(setImageByStatus( locList.get(2).value))
 
         }
         binding.btnDay4.setOnClickListener {
-            locList.locs.get(3).value = updataStatus( locList.locs.get(3).value)
-            binding.btnDay4.setImageResource(setImageByStatus( locList.locs.get(3).value))
+            locList.get(3).value = updataStatus( locList.get(3).value)
+            binding.btnDay4.setImageResource(setImageByStatus( locList.get(3).value))
         }
         binding.btnDay5.setOnClickListener {
-            locList.locs.get(4).value=updataStatus( locList.locs.get(4).value)
-            binding.btnDay5.setImageResource(setImageByStatus( locList.locs.get(4).value))
+            locList.get(4).value=updataStatus( locList.get(4).value)
+            binding.btnDay5.setImageResource(setImageByStatus( locList.get(4).value))
 
         }
 
@@ -88,9 +88,9 @@ class UpdateFragment : Fragment() {
     }
     fun  binding(a: Agenda){
         binding.nameUser.setText(a.name);
-        binding.emailUser.setText(a.contact.contacts.get(0).value)
-        binding.phoneUser.setText(a.contact.contacts.get(1).value)
-        binding.fbUser.setText(a.contact.contacts.get(2).value)
+        binding.emailUser.setText(a.contact.get(0).value)
+        binding.phoneUser.setText(a.contact.get(1).value)
+        binding.fbUser.setText(a.contact.get(2).value)
 //to get date from the number of week
         val week = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             LocalDate.now().with(ChronoField.ALIGNED_WEEK_OF_YEAR, a.week.toLong())
@@ -104,14 +104,14 @@ class UpdateFragment : Fragment() {
         val format = formatter.format(date1)
         binding.weekUser.setText(format.toString())
         binding.photoUser.setText(a.photo)
-        binding.btnDay1.setImageResource(setImageByStatus(a.loc.locs.get(0).value))
-        binding.btnDay2.setImageResource(setImageByStatus(a.loc.locs.get(1).value))
-        binding.btnDay3.setImageResource(setImageByStatus(a.loc.locs.get(2).value))
-        binding.btnDay4.setImageResource(setImageByStatus(a.loc.locs.get(3).value))
-        binding.btnDay5.setImageResource(setImageByStatus(a.loc.locs.get(4).value))
+        binding.btnDay1.setImageResource(setImageByStatus(a.loc.get(0).value))
+        binding.btnDay2.setImageResource(setImageByStatus(a.loc.get(1).value))
+        binding.btnDay3.setImageResource(setImageByStatus(a.loc.get(2).value))
+        binding.btnDay4.setImageResource(setImageByStatus(a.loc.get(3).value))
+        binding.btnDay5.setImageResource(setImageByStatus(a.loc.get(4).value))
     }
     @RequiresApi(Build.VERSION_CODES.O)
-    fun getAgenda(loc: LOCs):Agenda{
+    fun getAgenda(loc: List<LOC>):Agenda{
         val name = binding.nameUser.text.toString();
 
         val week1 = binding.weekUser.text.toString()
@@ -129,7 +129,7 @@ class UpdateFragment : Fragment() {
         val email = binding.emailUser.text.toString();
         val phone = binding.phoneUser.text.toString();
         val fb = binding.fbUser.text.toString()
-        var l = Contacts(listOf(Contact("email",email),Contact("phone",phone),Contact("FaceBook",fb)))
+        var l = listOf(Contact("email",email),Contact("phone",phone),Contact("FaceBook",fb))
 
 
         return Agenda(0,name,photo,l,weekOfYear.toLong(),loc)
