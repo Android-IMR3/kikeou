@@ -15,7 +15,7 @@ import java.lang.reflect.Type
 
 @Parcelize
 @JsonClass(generateAdapter = true)
-data class LOC (
+  class LOC (
     var day: Long,
     var value: String
 ): Parcelable{

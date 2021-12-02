@@ -9,7 +9,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 @JsonClass(generateAdapter = true)
-class Contact (
+ class Contact (
     val key: String,
     val value: String
 ): Parcelable {

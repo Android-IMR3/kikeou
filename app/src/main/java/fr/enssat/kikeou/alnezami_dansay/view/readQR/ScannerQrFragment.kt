@@ -21,10 +21,9 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
-<<<<<<< HEAD
+
 import androidx.navigation.fragment.navArgs
-=======
->>>>>>> 8f7dcdeb9451585a33d6c83b9a4ac80e4cac1d94
+
 import com.google.mlkit.common.model.LocalModel
 import com.google.mlkit.vision.barcode.Barcode
 import com.google.mlkit.vision.barcode.BarcodeScanner
@@ -39,11 +38,9 @@ import com.squareup.moshi.Moshi
 import fr.enssat.kikeou.alnezami_dansay.R
 import com.google.common.util.concurrent.ListenableFuture
 import fr.enssat.kikeou.alnezami_dansay.databinding.FragmentScannerQrBinding
-<<<<<<< HEAD
+
 import fr.enssat.kikeou.alnezami_dansay.model.entity.Agenda
-=======
-import fr.enssat.kikeou.alnezami_dansay.model.entity.Person
->>>>>>> 8f7dcdeb9451585a33d6c83b9a4ac80e4cac1d94
+
 import java.io.IOException
 
 

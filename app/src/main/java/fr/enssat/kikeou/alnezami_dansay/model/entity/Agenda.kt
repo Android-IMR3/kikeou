@@ -12,7 +12,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 @JsonClass(generateAdapter = true)
 @Entity(tableName = "agenda_table")
-class Agenda(
+ class Agenda(
     @PrimaryKey(autoGenerate = true) var id: Int,
     val name: String,
     var photo: String,
