@@ -32,9 +32,7 @@ class FormNewContactFragment : Fragment() {
     private val args: FormNewContactFragmentArgs by navArgs()
 
 
-
     @RequiresApi(Build.VERSION_CODES.N)
-
     @InternalCoroutinesApi
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,7 +47,7 @@ class FormNewContactFragment : Fragment() {
         btnsave.setOnClickListener {
 
             if(agenda.id==0){
-               contactViewModel.addAgenda(agenda)
+                contactViewModel.addAgenda(agenda)
                 Toast.makeText(context,"Added successfully", Toast.LENGTH_SHORT).show()
             }else{
                 contactViewModel.updateAgenda(agenda)
@@ -60,9 +58,7 @@ class FormNewContactFragment : Fragment() {
             findNavController().navigate(R.id.action_formNewContactFragment_to_listFragment)
         }
 
-
-
-        val btnList = binding.navBottom.btnList
+  val btnList = binding.navBottom.btnList
         btnList.setOnClickListener{_ ->
             findNavController().navigate(R.id.action_formNewContactFragment_to_listFragment)
         }
@@ -77,6 +73,8 @@ class FormNewContactFragment : Fragment() {
         val btnHome = binding.navBottom.homeBtn
         btnHome.setOnClickListener{_ ->
             findNavController().navigate(R.id.action_formNewContactFragment_to_homeFragment)
+
+        }
 
 
 
@@ -150,7 +148,6 @@ class FormNewContactFragment : Fragment() {
 
         return  path
     }
-
 
 
 

@@ -84,12 +84,8 @@ class UpdateFragment : Fragment() {
 
         }
 
-          val btnUpdate = binding.btnUpdateProfile
-        btnUpdate.setOnClickListener {
-            updateViewModel.updateMyProfile(getAgenda(locList,binding))
-           findNavController().navigate(R.id.action_updateFragment_to_homeFragment)
-        }
-        bindingLocationBtnsListener(locList,binding)
+
+
 
         val btnList = binding.navBottom.btnList
         btnList.setOnClickListener{_ ->
@@ -107,8 +103,6 @@ class UpdateFragment : Fragment() {
         btnHome.setOnClickListener{_ ->
              findNavController().navigate(R.id.action_updateFragment_to_homeFragment)
         }
-
-     
 
 
         return binding.root
