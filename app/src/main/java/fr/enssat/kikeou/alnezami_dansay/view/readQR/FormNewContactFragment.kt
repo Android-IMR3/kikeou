@@ -32,7 +32,10 @@ class FormNewContactFragment : Fragment() {
     private val args: FormNewContactFragmentArgs by navArgs()
 
 
+<<<<<<< HEAD
     @RequiresApi(Build.VERSION_CODES.N)
+=======
+>>>>>>> 8f7dcdeb9451585a33d6c83b9a4ac80e4cac1d94
     @InternalCoroutinesApi
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +43,7 @@ class FormNewContactFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentFormNewContactBinding.inflate(inflater, container, false)
+<<<<<<< HEAD
         contactViewModel = ViewModelProvider(this).get(FormNewContactViewModel::class.java)
         val agenda = args.newContact
         binding(agenda)
@@ -133,6 +137,16 @@ class FormNewContactFragment : Fragment() {
         return  path
     }
 
+=======
+        binding.nameUser.setText(args.newContact.first_name+" "+args.newContact.last_name)
+        binding.adresseUser.setText(args.newContact.adresse)
+        binding.phoneUser.setText(args.newContact.phone)
+
+        contactViewModel = ViewModelProvider(this).get(FormNewContactViewModel::class.java)
+        contactViewModel.addPerson(args.newContact)
+        return binding.root
+    }
+>>>>>>> 8f7dcdeb9451585a33d6c83b9a4ac80e4cac1d94
 
 
 

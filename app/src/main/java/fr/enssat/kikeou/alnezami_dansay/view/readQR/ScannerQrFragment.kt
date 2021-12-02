@@ -21,7 +21,10 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import androidx.navigation.fragment.findNavController
+<<<<<<< HEAD
 import androidx.navigation.fragment.navArgs
+=======
+>>>>>>> 8f7dcdeb9451585a33d6c83b9a4ac80e4cac1d94
 import com.google.mlkit.common.model.LocalModel
 import com.google.mlkit.vision.barcode.Barcode
 import com.google.mlkit.vision.barcode.BarcodeScanner
@@ -36,7 +39,11 @@ import com.squareup.moshi.Moshi
 import fr.enssat.kikeou.alnezami_dansay.R
 import com.google.common.util.concurrent.ListenableFuture
 import fr.enssat.kikeou.alnezami_dansay.databinding.FragmentScannerQrBinding
+<<<<<<< HEAD
 import fr.enssat.kikeou.alnezami_dansay.model.entity.Agenda
+=======
+import fr.enssat.kikeou.alnezami_dansay.model.entity.Person
+>>>>>>> 8f7dcdeb9451585a33d6c83b9a4ac80e4cac1d94
 import java.io.IOException
 
 
@@ -50,7 +57,12 @@ class ScannerQrFragment : Fragment() {
     private lateinit var binding: FragmentScannerQrBinding
     private lateinit var objectDetector: ObjectDetector
     private lateinit var cameraProviderFuture : ListenableFuture<ProcessCameraProvider>
+<<<<<<< HEAD
     private val args: ScannerQrFragmentArgs by navArgs()
+=======
+
+
+>>>>>>> 8f7dcdeb9451585a33d6c83b9a4ac80e4cac1d94
     override fun onRequestPermissionsResult(requestCode: Int,permissions: Array<String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         when (requestCode) {
@@ -58,6 +70,10 @@ class ScannerQrFragment : Fragment() {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     initCameraAndTF()
                 } else {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8f7dcdeb9451585a33d6c83b9a4ac80e4cac1d94
                    Toast.makeText(context,this.getString(R.string.permissionToGrant), Toast.LENGTH_LONG).show()
                 }
                 return
@@ -70,9 +86,12 @@ class ScannerQrFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentScannerQrBinding.inflate(inflater, container, false)
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 8f7dcdeb9451585a33d6c83b9a4ac80e4cac1d94
         return binding.root
     }
 
@@ -142,7 +161,25 @@ class ScannerQrFragment : Fragment() {
                     val image = imageProxy.image
                     if(image != null) {
                         val processImage = InputImage.fromMediaImage(image, rotationDegrees)
+<<<<<<< HEAD
 
+=======
+                       /* objectDetector.process(processImage)
+                            .addOnFailureListener {
+                                Log.e("CameraActivity","Error: $it.message")
+                                imageProxy.close()
+                            }.addOnSuccessListener { objects ->
+                                for( it in objects) {
+
+                                   if(binding.layout.childCount > 1)  {
+                                        binding.layout.removeViewAt(1)
+                                    }
+                                    val element = Draw(context, it.boundingBox, it.labels.firstOrNull()?.text ?: "Undefined")
+                                    binding.layout.addView(element,1)
+                                }
+                                imageProxy.close()
+                            }*/
+>>>>>>> 8f7dcdeb9451585a33d6c83b9a4ac80e4cac1d94
 
                         //See https://developers.google.com/ml-kit/vision/barcode-scanning/android
                          barcodeScanner.process(processImage).addOnFailureListener {
@@ -150,6 +187,7 @@ class ScannerQrFragment : Fragment() {
                               imageProxy.close()
                           }.addOnSuccessListener { barcodes ->
                               for (barcode in barcodes) {
+<<<<<<< HEAD
                                   val rawValue = barcode.rawValue
                                   val moshi = Moshi.Builder().build()
                                   val adapter: JsonAdapter<Agenda> = moshi.adapter(Agenda::class.java)
@@ -163,6 +201,19 @@ class ScannerQrFragment : Fragment() {
                                           contact?.id=0
                                       }
                                       //  Log.e("camera scanner", json.toString())
+=======
+
+                                  val bounds = barcode.boundingBox
+                                  val corners = barcode.cornerPoints
+
+                                  val rawValue = barcode.rawValue
+                                  val moshi = Moshi.Builder().build()
+                                  val adapter: JsonAdapter<Person> = moshi.adapter(Person::class.java)
+                                  try{
+                                      val contact = adapter.fromJson(rawValue)
+                                      //  Log.e("camera scanner", json.toString())
+                                      //  Toast.makeText(context,rawValue,Toast.LENGTH_SHORT).show()
+>>>>>>> 8f7dcdeb9451585a33d6c83b9a4ac80e4cac1d94
                                       val action = contact?.let {
                                           ScannerQrFragmentDirections.actionScannerQrFragmentToFormNewContactFragment(
                                               it
