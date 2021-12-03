@@ -27,18 +27,18 @@ val validateAgenda = Validation<Agenda> {
        }
         LOC::value ifPresent{
             minLength(3)
-            maxLength(10)
+            maxLength(20)
         }
     }
 
     Agenda::contact  onEach{
         Contact::key ifPresent{
             minLength(3)
-            maxLength(10)
+            maxLength(20)
         }
         Contact::value ifPresent{
             minLength(5)
-            maxLength(10)
+            maxLength(50)
         }
     }
 
