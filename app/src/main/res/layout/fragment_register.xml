@@ -20,6 +20,8 @@
             android:layout_height="match_parent"
             tools:context=".fragment.home.RegisterFragment">
 
+
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/name"
                 android:layout_width="match_parent"
@@ -92,6 +94,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Mail" />
+
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -195,6 +199,7 @@
                     android:src="@drawable/homepage"
                     android:tooltipText="Friday"
                     tools:ignore="SpeakableTextPresentCheck" />
+
             </LinearLayout>
 
             <Button
@@ -208,8 +213,31 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.core.widget.NestedScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/circular_progress_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F1ECEC"
+        android:visibility="gone">
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:layout_width="301dp"
+            android:layout_height="147dp"
+            android:layout_margin="32dp"
+            android:layout_marginEnd="307dp"
+            android:indeterminate="true"
+            app:indicatorColor="@color/green_500"
+            app:indicatorSize="64dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:trackColor="@color/purple_500"
+            app:trackThickness="8dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

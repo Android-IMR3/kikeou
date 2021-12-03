@@ -16,8 +16,12 @@ import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.location.Location
 import android.os.Build
+import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import fr.enssat.kikeou.alnezami_dansay.model.entity.*
+import fr.enssat.kikeou.alnezami_dansay.model.validations.validateAgenda
+import java.text.ParseException
 import java.util.*
 
 
@@ -40,15 +44,30 @@ class RegisterFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentRegisterBinding.inflate(inflater, container, false)
         registerViewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
-
+       // binding.circularProgressLayout.setVisibility(View.INVISIBLE)
         var locList =listOf(LOC(),LOC(),LOC(),LOC(),LOC())
+
         bindingLocation(locList)
         var agenda: Agenda
         val btn = binding.btnSignup
         btn.setOnClickListener {
-            agenda = getAgenda(locList)
-            registerViewModel.signUp(agenda)
-            findNavController().navigate(R.id.action_registerFragment_to_listFragment)
+
+
+                agenda = getAgenda(locList)
+                var validationResult = validateAgenda(agenda)
+                if(validationResult.errors.size>0){
+                    for(i in validationResult.errors){
+                        Toast.makeText(context,i.message,Toast.LENGTH_SHORT).show()
+                    }
+                }else{
+                    registerViewModel.signUp(agenda)
+                    //  binding.circularProgressLayout.setVisibility(View.VISIBLE)
+                    Thread.sleep(2_000)
+                    //   binding.circularProgressLayout.setVisibility(View.INVISIBLE)
+                    findNavController().navigate(R.id.action_registerFragment_to_listFragment)
+                }
+
+
         }
 
         binding.btnDay1.setOnClickListener {
@@ -94,13 +113,12 @@ class RegisterFragment : Fragment() {
   fun getAgenda(loc: List<LOC>):Agenda{
       val name = binding.nameUser.text.toString()
       val week1 = binding.weekUser.text.toString()
-      var weekOfYear = 0
-      val format = "dd/mm/yyyy"
-      val df = SimpleDateFormat(format)
-      val date: Date = df.parse(week1)
-      val cal = Calendar.getInstance()
-      cal.time = date
-      weekOfYear = cal[Calendar.WEEK_OF_YEAR]
+      var weekOfYear=-1
+      try {
+           weekOfYear  = getdateformated(week1)
+      }catch(e:ParseException){
+          Log.e("register", "error format")
+      }
       var photo = binding.photoUser.text.toString();
       if(photo.isEmpty()){
           photo = "https://source.unsplash.com/1600x900/?avatar,person"
@@ -114,6 +132,19 @@ class RegisterFragment : Fragment() {
 
   }
 
+    @RequiresApi(Build.VERSION_CODES.N)
+    @Throws(ParseException::class)
+    fun getdateformated(w: String):Int{
+        var weekOfYear = 0
+        val format = "dd/mm/yyyy"
+        val df = SimpleDateFormat(format)
+        val date: Date = df.parse(w)
+        val cal = Calendar.getInstance()
+        cal.time = date
+        weekOfYear = cal[Calendar.WEEK_OF_YEAR]
+        return weekOfYear
+    }
+  
 
     fun updataStatus( loc: String):String{
         var res=""

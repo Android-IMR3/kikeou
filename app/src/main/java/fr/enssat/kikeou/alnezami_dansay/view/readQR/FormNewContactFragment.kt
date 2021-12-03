@@ -19,6 +19,7 @@ import fr.enssat.kikeou.alnezami_dansay.databinding.FragmentFormNewContactBindin
 import fr.enssat.kikeou.alnezami_dansay.model.entity.Agenda
 import fr.enssat.kikeou.alnezami_dansay.model.entity.LOC
 import fr.enssat.kikeou.alnezami_dansay.model.entity.Status
+import fr.enssat.kikeou.alnezami_dansay.model.validations.validateAgenda
 import kotlinx.coroutines.InternalCoroutinesApi
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -46,16 +47,24 @@ class FormNewContactFragment : Fragment() {
         val btnsave= binding.btnSave
         btnsave.setOnClickListener {
 
-            if(agenda.id==0){
-                contactViewModel.addAgenda(agenda)
-                Toast.makeText(context,"Added successfully", Toast.LENGTH_SHORT).show()
-            }else{
-                contactViewModel.updateAgenda(agenda)
-                Toast.makeText(context,"Updated successfully", Toast.LENGTH_SHORT).show()
 
+            var validationResult = validateAgenda(agenda)
+            if(validationResult.errors.size>0){
+                for(i in validationResult.errors){
+                    Toast.makeText(context,i.message, Toast.LENGTH_SHORT).show()
+                }
+            }else{
+                if(agenda.id==0){
+                    contactViewModel.addAgenda(agenda)
+                    Toast.makeText(context,"Added successfully", Toast.LENGTH_SHORT).show()
+                }else{
+                    contactViewModel.updateAgenda(agenda)
+                    Toast.makeText(context,"Updated successfully", Toast.LENGTH_SHORT).show()
+
+                }
+                findNavController().navigate(R.id.action_formNewContactFragment_to_listFragment)
             }
 
-            findNavController().navigate(R.id.action_formNewContactFragment_to_listFragment)
         }
 
   val btnList = binding.navBottom.btnList
