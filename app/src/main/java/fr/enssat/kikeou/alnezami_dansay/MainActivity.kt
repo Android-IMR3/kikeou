@@ -23,13 +23,15 @@ class MainActivity : AppCompatActivity() {
         val navController: NavController = navHostFragment.navController
         setupActionBarWithNavController(navController)
     }
+
     override fun onSupportNavigateUp():Boolean{
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         val navController: NavController = navHostFragment.navController
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
-   /* override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
         menuInflater.inflate(R.menu.nav_menu,menu)
         val search :MenuItem? = menu?.findItem(R.id.app_bar_search)
@@ -46,6 +48,7 @@ class MainActivity : AppCompatActivity() {
         })
         return true
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         super.onOptionsItemSelected(item)
         when (item?.itemId)
@@ -59,5 +62,4 @@ class MainActivity : AppCompatActivity() {
         }
         return true
     }
-*/
 }

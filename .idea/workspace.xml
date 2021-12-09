@@ -5,29 +5,55 @@
       <config />
     </shared>
   </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f76224e5-b86f-4381-b524-bba283cd54e3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/fr/enssat/kikeou/alnezami_dansay/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/fr/enssat/kikeou/alnezami_dansay/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/fr/enssat/kikeou/alnezami_dansay/database/KikeouDataBase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/fr/enssat/kikeou/alnezami_dansay/database/KikeouDataBase.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/fr/enssat/kikeou/alnezami_dansay/database/dao/AgendaDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/fr/enssat/kikeou/alnezami_dansay/database/dao/AgendaDao.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/fr/enssat/kikeou/alnezami_dansay/database/entity/Agenda.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/fr/enssat/kikeou/alnezami_dansay/database/entity/Agenda.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/fr/enssat/kikeou/alnezami_dansay/database/entity/Person.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/fr/enssat/kikeou/alnezami_dansay/database/entity/Person.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/fr/enssat/kikeou/alnezami_dansay/view/list/ListPersonViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/fr/enssat/kikeou/alnezami_dansay/view/list/ListPersonViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/fr/enssat/kikeou/alnezami_dansay/view/qr/QrFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/fr/enssat/kikeou/alnezami_dansay/view/qr/QrFragment.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/home/sun/.android/avd/Pixel_3a_API_30_x86.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[R9WM80ZLN0J]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Kikeou" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Kikeou" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Kikeou" type="f1a62948:ProjectNode" />
+                <item name="app" type="2d1252cf:ModuleNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -42,6 +68,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="215ANvd0aMaNbi73DTGJcoqRCJq" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -51,6 +78,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.externalResources" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
