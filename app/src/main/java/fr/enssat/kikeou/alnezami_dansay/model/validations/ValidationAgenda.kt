@@ -34,7 +34,7 @@ val validateAgenda = Validation<Agenda> {
     Agenda::contact  onEach{
         Contact::key ifPresent{
             minLength(3)
-            maxLength(20)
+            maxLength(150)
         }
         Contact::value ifPresent{
             minLength(5)
