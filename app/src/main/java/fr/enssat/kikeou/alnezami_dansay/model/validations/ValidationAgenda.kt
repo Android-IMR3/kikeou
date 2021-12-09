@@ -38,7 +38,7 @@ val validateAgenda = Validation<Agenda> {
         }
         Contact::value ifPresent{
             minLength(5)
-            maxLength(50)
+            maxLength(150)
         }
     }
 
