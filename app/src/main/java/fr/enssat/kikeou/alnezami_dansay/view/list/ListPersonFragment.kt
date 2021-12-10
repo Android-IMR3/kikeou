@@ -12,6 +12,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import fr.enssat.kikeou.alnezami_dansay.R
 import fr.enssat.kikeou.alnezami_dansay.databinding.FragmentListBinding
+import fr.enssat.kikeou.alnezami_dansay.model.entity.Agenda
+import fr.enssat.kikeou.alnezami_dansay.model.entity.Contact
+import fr.enssat.kikeou.alnezami_dansay.model.entity.LOC
 
 
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -45,7 +48,8 @@ class ListPersonFragment : Fragment() {
         recyclerview.layoutManager = LinearLayoutManager(requireContext())
 
         mPersonViewModel = ViewModelProvider(this).get(ListPersonViewModel::class.java)
-
+        //by default to make user account 
+        var a = Agenda(0,"ibrahim","", listOf(Contact("email","email"),Contact("phone","phone"),Contact("FaceBook","fb")),33, listOf(LOC(),LOC(),LOC(),LOC(),LOC()))
         mPersonViewModel.allAgendas.observe(viewLifecycleOwner, Observer{user -> adapter.setData(user)})
         //if no data in data base send user to register his data
         mPersonViewModel.count.observe(viewLifecycleOwner, Observer{count -> if(count==0){
