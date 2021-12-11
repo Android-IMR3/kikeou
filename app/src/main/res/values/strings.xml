@@ -1,3 +1,39 @@
 <resources>
+
     <string name="app_name">Kikeou</string>
+    <string name="name_user">Ibrahim ALNEZAMI</string>
+    <string name="address_user">24 rue edgard de kergariou lannion</string>
+    <string name="email_user">Ibrahim.ALNEZAMI@gmail.com</string>
+    <string name="phone_user">07 87 87 45 31</string>
+
+    <string name="description_avatar">avatar</string>
+    <string name="shr_hint_username">Username</string>
+    <string name="shr_hint_password">Password</string>
+    <string name="desc_share_btn">btn to share QR to other app</string>
+    <string name="desc_show_agenda">show agenda</string>
+    <string name="desc_img_status">img depend on status of user</string>
+    <string name="desc_icon_addresse">icon addresse</string>
+    <string name="desc_email_icon">email_icon</string>
+    <string name="desc_phone_icon">phone_icon</string>
+    <string name="desc_scanner_btn">scanner_btn</string>
+    <string name="desc_home_btn">home_btn</string>
+    <string name="desc_qr_code">QR code</string>
+
+    <!---
+hints
+-->
+    <string name="h_name">Name</string>
+    <string name="h_phone">Phone number</string>
+    <string name="h_email">Email</string>
+    <string name="h_adresse">Addresse</string>
+
+    <string name="register_btn">Signup</string>
+    <string name="update_btn">Update</string>
+
+    <string name="generate">generate QRcode</string>
+    <string name="share">share QRcode</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="permissionToGrant">permesion</string>
 </resources>
