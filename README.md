@@ -1,3 +1,4 @@
+Cette application a été développée dans le cadre d'un mini projet par Ibrahim ALNEZAMI, et Lucas DANSAY
 # kikeou
 Génération et scan d’un Qrcode
 o UI C.R.U.D , recherche des données d’agenda 
