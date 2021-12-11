@@ -91,11 +91,11 @@ class ContactFragment : Fragment() {
         binding.phoneUser.setText(a.contact.get(1).value)
         binding.fbUser.setText(a.contact.get(2).value)
         Picasso.get().load(a.photo).into(binding.appBarImage)
-        binding.btnDay1.setImageResource(setImageByStatus(a.loc.get(0).value))
-        binding.btnDay2.setImageResource(setImageByStatus(a.loc.get(1).value))
-        binding.btnDay3.setImageResource(setImageByStatus(a.loc.get(2).value))
-        binding.btnDay4.setImageResource(setImageByStatus(a.loc.get(3).value))
-        binding.btnDay5.setImageResource(setImageByStatus(a.loc.get(4).value))
+        binding.locations.btnDay1.setImageResource(setImageByStatus(a.loc.get(0).value))
+        binding.locations.btnDay2.setImageResource(setImageByStatus(a.loc.get(1).value))
+        binding.locations.btnDay3.setImageResource(setImageByStatus(a.loc.get(2).value))
+        binding.locations.btnDay4.setImageResource(setImageByStatus(a.loc.get(3).value))
+        binding.locations.btnDay5.setImageResource(setImageByStatus(a.loc.get(4).value))
         binding.statusImg.setImageResource(getDayStatus(a.loc))
         val week = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             LocalDate.now().with(ChronoField.ALIGNED_WEEK_OF_YEAR, a.week.toLong())
@@ -104,7 +104,7 @@ class ContactFragment : Fragment() {
         }
 
         val start = week.with(DayOfWeek.MONDAY)
-        binding.weekHome3.setText("Week number "+a.week.toString()+" of "+start)
+        binding.weekHome.setText("Week number "+a.week.toString()+" of "+start)
     }
     @RequiresApi(Build.VERSION_CODES.N)
     fun getDayStatus(location: List<LOC>):Int{
