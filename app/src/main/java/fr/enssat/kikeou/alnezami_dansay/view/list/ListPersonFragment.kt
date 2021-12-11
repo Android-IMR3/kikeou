@@ -48,11 +48,11 @@ class ListPersonFragment : Fragment() {
         recyclerview.layoutManager = LinearLayoutManager(requireContext())
 
         mPersonViewModel = ViewModelProvider(this).get(ListPersonViewModel::class.java)
-        //by default to make user account
-        var a = Agenda(0,"ibrahim","", listOf(Contact("email","email"),Contact("phone","phone"),Contact("FaceBook","fb")),33, listOf(LOC(),LOC(),LOC(),LOC(),LOC()))
-        var b = Agenda(0,"Lucas","", listOf(Contact("email","email"),Contact("phone","phone"),Contact("FaceBook","fb")),33, listOf(LOC(),LOC(),LOC(),LOC(),LOC()))
-        mPersonViewModel.addAgenda(a)
-        mPersonViewModel.addAgenda(b)
+        //make user account
+       // var a = Agenda(0,"ibrahim","", listOf(Contact("email","email"),Contact("phone","phone"),Contact("FaceBook","fb")),33, listOf(LOC(),LOC(),LOC(),LOC(),LOC()))
+        //var b = Agenda(0,"Lucas","", listOf(Contact("email","email"),Contact("phone","phone"),Contact("FaceBook","fb")),33, listOf(LOC(),LOC(),LOC(),LOC(),LOC()))
+        //mPersonViewModel.addAgenda(a)
+        //mPersonViewModel.addAgenda(b)
         mPersonViewModel.allAgendas.observe(viewLifecycleOwner, Observer{user -> adapter.setData(user)})
         //if no data in data base send user to register his data
         mPersonViewModel.count.observe(viewLifecycleOwner, Observer{count -> if(count==0){
