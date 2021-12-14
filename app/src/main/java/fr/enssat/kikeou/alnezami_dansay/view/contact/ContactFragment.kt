@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -87,16 +88,60 @@ class ContactFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.N)
     fun binding(a: Agenda){
         binding.nameUser.setText(a.name);
-        binding.emailUser.setText(a.contact.get(0).value)
-        binding.phoneUser.setText(a.contact.get(1).value)
-        binding.fbUser.setText(a.contact.get(2).value)
+
+        try {
+            if(a.contact.size==1)
+                binding.emailUser.setText(a.contact.get(0).value)
+        }catch( e: Exception ){
+            binding.emailUser.setText("pas de email")
+        }
+        try {
+            if(a.contact.size==2)
+                binding.phoneUser.setText(a.contact.get(1).value)
+        }catch( e: Exception ){
+            binding.phoneUser.setText("pas de phone")
+        }
+        try{
+            if(a.contact.size==3)
+                binding.fbUser.setText(a.contact.get(2).value)
+        }catch( e:Exception ){
+            binding.fbUser.setText("pas de fb")
+        }
+
         Picasso.get().load(a.photo).into(binding.appBarImage)
-        binding.locations.btnDay1.setImageResource(setImageByStatus(a.loc.get(0).value))
-        binding.locations.btnDay2.setImageResource(setImageByStatus(a.loc.get(1).value))
-        binding.locations.btnDay3.setImageResource(setImageByStatus(a.loc.get(2).value))
-        binding.locations.btnDay4.setImageResource(setImageByStatus(a.loc.get(3).value))
-        binding.locations.btnDay5.setImageResource(setImageByStatus(a.loc.get(4).value))
-        binding.statusImg.setImageResource(getDayStatus(a.loc))
+
+        try {
+            if(a.loc.size==1){
+                binding.locations.btnDay1.setImageResource(setImageByStatus(a.loc.get(0).value))
+
+            }else{
+                a.loc.toMutableList().add(LOC())
+            }
+            if(a.loc.size==2){
+                binding.locations.btnDay2.setImageResource(setImageByStatus(a.loc.get(1).value))
+            }else{
+                a.loc.toMutableList().add(LOC())
+            }
+            if(a.loc.size==3){
+                binding.locations.btnDay3.setImageResource(setImageByStatus(a.loc.get(2).value))
+            }else{
+                a.loc.toMutableList().add(LOC())
+            }
+            if(a.loc.size==4){
+                binding.locations.btnDay4.setImageResource(setImageByStatus(a.loc.get(3).value))
+            }else{
+                a.loc.toMutableList().add(LOC())
+            }
+            if(a.loc.size==5){
+                binding.locations.btnDay5.setImageResource(setImageByStatus(a.loc.get(4).value))
+            }else{
+                a.loc.toMutableList().add(LOC())
+            }
+
+            binding.statusImg.setImageResource(getDayStatus(a.loc))
+        }catch(e: Exception){
+            Toast.makeText(context,"Pas de Locations", Toast.LENGTH_LONG).show()
+        }
         val week = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             LocalDate.now().with(ChronoField.ALIGNED_WEEK_OF_YEAR, a.week.toLong())
         } else {

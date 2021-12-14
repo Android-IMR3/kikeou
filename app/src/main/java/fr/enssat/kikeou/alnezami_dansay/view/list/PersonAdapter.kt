@@ -56,7 +56,12 @@ class PersonAdapter: RecyclerView.Adapter<PersonAdapter.ViewHolder>(),Filterable
                 a.photo = "https://source.unsplash.com/1600x900/?avatar,person"
             }
             Picasso.get().load(a.photo).into(avatar)
-            status.setImageResource(getDayStatus(a.loc))
+            try {
+                status.setImageResource(getDayStatus(a.loc))
+            }catch(e: Exception){
+
+            }
+
         }
 
         companion object {
