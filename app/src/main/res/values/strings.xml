@@ -2,9 +2,9 @@
 
     <string name="app_name">Kikeou</string>
     <string name="name_user">Ibrahim ALNEZAMI</string>
-    <string name="address_user">24 rue edgard de kergariou lannion</string>
-    <string name="email_user">Ibrahim.ALNEZAMI@gmail.com</string>
-    <string name="phone_user">07 87 87 45 31</string>
+    <string name="address_user">2 rue edgard de kergariou Brest</string>
+    <string name="email_user">Ibrahim@gmail.com</string>
+    <string name="phone_user">13 87 87 45 31</string>
 
     <string name="description_avatar">avatar</string>
     <string name="shr_hint_username">Username</string>
@@ -26,10 +26,8 @@ hints
     <string name="h_phone">Phone number</string>
     <string name="h_email">Email</string>
     <string name="h_adresse">Addresse</string>
-
     <string name="register_btn">Signup</string>
     <string name="update_btn">Update</string>
-
     <string name="generate">generate QRcode</string>
     <string name="share">share QRcode</string>
 
