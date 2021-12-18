@@ -73,7 +73,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:ems="10"
-                    android:hint="Date of week"
+                    android:hint="dd/mm/yyyy"
                     android:inputType="date"
                     tools:ignore="SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>

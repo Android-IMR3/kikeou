@@ -29,6 +29,7 @@
         <action
             android:id="@+id/action_listFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/qrFragment"
@@ -164,6 +165,8 @@
             android:id="@+id/action_updateFragment_to_listFragment"
             app:destination="@id/listFragment" />
     </fragment>
+
+
 
 
 </navigation>

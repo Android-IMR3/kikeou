@@ -27,7 +27,7 @@ val validateAgenda = Validation<Agenda> {
        }
         LOC::value ifPresent{
             minLength(3)
-            maxLength(10)
+            maxLength(20)
         }
     }
 

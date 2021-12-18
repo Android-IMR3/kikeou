@@ -3,9 +3,12 @@ package fr.enssat.kikeou.alnezami_dansay.view.list
 import android.icu.util.Calendar
 import android.location.Location
 import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
@@ -19,16 +22,16 @@ import fr.enssat.kikeou.alnezami_dansay.model.entity.LOC
 import fr.enssat.kikeou.alnezami_dansay.model.entity.Status
 
 
-class PersonAdapter: RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
+class PersonAdapter: RecyclerView.Adapter<PersonAdapter.ViewHolder>(),Filterable {
 
     private var agendaList =  emptyList<Agenda>()
+    private var agendaListFilter = ArrayList<Agenda>()
 
-
-    override fun getItemCount() = agendaList.size
+    override fun getItemCount() = agendaListFilter.size
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = agendaList[position]
+        val item = agendaListFilter[position]
         holder.bind(item)
         holder.itemView.setOnClickListener {
             val action = ListPersonFragmentDirections.actionListFragmentToContactFragment(item)
@@ -53,7 +56,12 @@ class PersonAdapter: RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
                 a.photo = "https://source.unsplash.com/1600x900/?avatar,person"
             }
             Picasso.get().load(a.photo).into(avatar)
-            status.setImageResource(getDayStatus(a.loc))
+            try {
+                status.setImageResource(getDayStatus(a.loc))
+            }catch(e: Exception){
+
+            }
+
         }
 
         companion object {
@@ -113,9 +121,42 @@ class PersonAdapter: RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
 
     }
     fun setData(agenda: List<Agenda>){
-        this.agendaList = agenda
+        this.agendaList = agenda as ArrayList<Agenda>
+        this.agendaListFilter = agenda as ArrayList<Agenda>
         notifyDataSetChanged()
 
     }
+
+    override fun getFilter(): Filter {
+        return object : Filter() {
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val charSearch = constraint.toString()
+                if (charSearch.isEmpty()) {
+                    agendaListFilter = agendaList as ArrayList<Agenda>
+                } else {
+                    val resultList = ArrayList<Agenda>()
+                    for (row in agendaListFilter) {
+                        if (row.name.lowercase().contains(constraint.toString().lowercase())) {
+                            resultList.add(row)
+                            Log.i("search",row.name+"  : "+constraint)
+                        }else{
+                            Log.i("search don't match",row.name+"  : "+constraint)
+                        }
+                    }
+                    agendaListFilter = resultList
+                }
+                val filterResults = FilterResults()
+                filterResults.values = agendaListFilter
+                return filterResults
+            }
+
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                agendaListFilter = results?.values as ArrayList<Agenda>
+                notifyDataSetChanged()
+            }
+        }
+    }
+
+
 
 }

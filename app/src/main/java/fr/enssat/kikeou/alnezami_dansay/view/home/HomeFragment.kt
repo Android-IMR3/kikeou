@@ -50,7 +50,7 @@ class HomeFragment : Fragment() {
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         homeViewModel.myAcount.observe(viewLifecycleOwner, Observer{agenda ->
             binding(agenda)
-            val btnUpdate = binding.btnUpdateProfil
+            val btnUpdate = binding.btnUpdate
             btnUpdate.setOnClickListener{
 
                 val action = agenda?.let {
@@ -99,22 +99,18 @@ class HomeFragment : Fragment() {
         binding.phoneUser.setText(a.contact.get(1).value)
         binding.fbUser.setText(a.contact.get(2).value)
         Picasso.get().load(a.photo).into(binding.appBarImage)
-        binding.btnDay1.setImageResource(setImageByStatus(a.loc.get(0).value))
-        binding.btnDay2.setImageResource(setImageByStatus(a.loc.get(1).value))
-        binding.btnDay3.setImageResource(setImageByStatus(a.loc.get(2).value))
-        binding.btnDay4.setImageResource(setImageByStatus(a.loc.get(3).value))
-        binding.btnDay5.setImageResource(setImageByStatus(a.loc.get(4).value))
+        binding.locations.btnDay1.setImageResource(setImageByStatus(a.loc.get(0).value))
+        binding.locations.btnDay2.setImageResource(setImageByStatus(a.loc.get(1).value))
+        binding.locations.btnDay3.setImageResource(setImageByStatus(a.loc.get(2).value))
+        binding.locations.btnDay4.setImageResource(setImageByStatus(a.loc.get(3).value))
+        binding.locations.btnDay5.setImageResource(setImageByStatus(a.loc.get(4).value))
         binding.statusImg.setImageResource(getDayStatus(a.loc))
         val week = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             LocalDate.now().with(ChronoField.ALIGNED_WEEK_OF_YEAR, a.week.toLong())
         } else {
             TODO("VERSION.SDK_INT < O")
         }
-        //local date to date
-        val date1 = SimpleDateFormat("yyyy-MM-dd").parse(week.toString())
-        //formatting
-        val formatter = SimpleDateFormat("dd/MM/yyyy")
-        val format = formatter.format(date1)
+
         val start = week.with(DayOfWeek.MONDAY)
         binding.weekHome.setText("Week number "+a.week.toString()+" of "+start)
 

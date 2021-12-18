@@ -1,10 +1,13 @@
 package fr.enssat.kikeou.alnezami_dansay.view.home
 
+
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.location.Location
 import android.os.Build
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,14 +19,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import fr.enssat.kikeou.alnezami_dansay.R
-
 import fr.enssat.kikeou.alnezami_dansay.databinding.FragmentUpdateBinding
 import fr.enssat.kikeou.alnezami_dansay.model.entity.*
 import fr.enssat.kikeou.alnezami_dansay.model.validations.validateAgenda
 import kotlinx.coroutines.InternalCoroutinesApi
 import java.text.ParseException
-
-
 import java.time.LocalDate
 import java.time.temporal.ChronoField
 import java.util.*
@@ -73,28 +73,28 @@ class UpdateFragment : Fragment() {
 
         }
 
-        binding.btnDay1.setOnClickListener {
+        binding.locations.btnDay1.setOnClickListener {
             locList.get(0).value=updataStatus( locList.get(0).value)
-            binding.btnDay1.setImageResource(setImageByStatus( locList.get(0).value))
+            binding.locations.btnDay1.setImageResource(setImageByStatus( locList.get(0).value))
 
         }
-        binding.btnDay2.setOnClickListener {
+        binding.locations.btnDay2.setOnClickListener {
             locList.get(1).value= updataStatus( locList.get(1).value)
-            binding.btnDay2.setImageResource(setImageByStatus( locList.get(1).value))
+            binding.locations.btnDay2.setImageResource(setImageByStatus( locList.get(1).value))
 
         }
-        binding.btnDay3.setOnClickListener {
+        binding.locations.btnDay3.setOnClickListener {
             locList.get(2).value= updataStatus( locList.get(2).value)
-            binding.btnDay3.setImageResource(setImageByStatus( locList.get(2).value))
+            binding.locations.btnDay3.setImageResource(setImageByStatus( locList.get(2).value))
 
         }
-        binding.btnDay4.setOnClickListener {
+        binding.locations.btnDay4.setOnClickListener {
             locList.get(3).value = updataStatus( locList.get(3).value)
-            binding.btnDay4.setImageResource(setImageByStatus( locList.get(3).value))
+            binding.locations.btnDay4.setImageResource(setImageByStatus( locList.get(3).value))
         }
-        binding.btnDay5.setOnClickListener {
+        binding.locations.btnDay5.setOnClickListener {
             locList.get(4).value=updataStatus( locList.get(4).value)
-            binding.btnDay5.setImageResource(setImageByStatus( locList.get(4).value))
+            binding.locations.btnDay5.setImageResource(setImageByStatus( locList.get(4).value))
 
         }
 
@@ -139,11 +139,11 @@ class UpdateFragment : Fragment() {
         val format = formatter.format(date1)
         binding.weekUser.setText(format.toString())
         binding.photoUser.setText(a.photo)
-        binding.btnDay1.setImageResource(setImageByStatus(a.loc.get(0).value))
-        binding.btnDay2.setImageResource(setImageByStatus(a.loc.get(1).value))
-        binding.btnDay3.setImageResource(setImageByStatus(a.loc.get(2).value))
-        binding.btnDay4.setImageResource(setImageByStatus(a.loc.get(3).value))
-        binding.btnDay5.setImageResource(setImageByStatus(a.loc.get(4).value))
+        binding.locations.btnDay1.setImageResource(setImageByStatus(a.loc.get(0).value))
+        binding.locations.btnDay2.setImageResource(setImageByStatus(a.loc.get(1).value))
+        binding.locations.btnDay3.setImageResource(setImageByStatus(a.loc.get(2).value))
+        binding.locations.btnDay4.setImageResource(setImageByStatus(a.loc.get(3).value))
+        binding.locations.btnDay5.setImageResource(setImageByStatus(a.loc.get(4).value))
     }
     @RequiresApi(Build.VERSION_CODES.O)
     fun getAgenda(loc: List<LOC>):Agenda{
@@ -179,18 +179,22 @@ class UpdateFragment : Fragment() {
     }
     fun updataStatus( loc: String):String{
         var res=""
-        res = when(loc){
+         when(loc){
             Status.OFF.name,Status.Off.name -> {
-                Status.HOME.name
+                res = Status.HOME.name
+                Toast.makeText(context,Status.HOME.name, Toast.LENGTH_SHORT).show()
             }
             Status.HOME.name,Status.teletravail.name -> {
-                Status.WORK.name
+                res = Status.WORK.name
+                Toast.makeText(context,Status.WORK.name, Toast.LENGTH_SHORT).show()
             }
             Status.WORK.name,"WF 036" -> {
-                Status.OFF.name
+               res = Status.OFF.name
+                Toast.makeText(context,Status.OFF.name, Toast.LENGTH_SHORT).show()
             }
             else -> {
-                Status.WORK.name
+               res = Status.WORK.name
+                Toast.makeText(context,Status.WORK.name, Toast.LENGTH_SHORT).show()
             }
         }
         return res
